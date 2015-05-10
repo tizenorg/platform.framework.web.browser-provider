@@ -1,0 +1,10 @@
+[Socket]
+ListenStream=/opt/data/browser-provider/browser-provider.sock
+SocketMode=0777
+PassCredentials=yes
+Accept=false
+SmackLabelIPIn=browser-provider
+SmackLabelIPOut=browser-provider
+
+[Install]
+WantedBy=sockets.target

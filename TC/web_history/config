@@ -1,0 +1,3 @@
+PKG_NAME=capi-web-history
+TET_INSTALL_HOST_PATH=/var/tmp/dts_fw/TC/web_history/TETware
+TET_INSTALL_TARGET_PATH=/opt/home/$PKG_NAME/TETware

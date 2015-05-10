@@ -1,0 +1,10 @@
+[Unit]
+Description=browser provider service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/browser-provider
+
+[Install]
+WantedBy=graphical.target
+
