@@ -93,9 +93,9 @@ make %{?jobs:-j%jobs}
 rm -rf %{buildroot}
 %make_install
 
-#mkdir -p %{buildroot}%{_libdir}/systemd/system/graphical.target.wants
+mkdir -p %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants
 mkdir -p %{buildroot}%{_libdir}/systemd/system/sockets.target.wants
-#ln -s ../browser-provider.service %{buildroot}%{_libdir}/systemd/system/graphical.target.wants/
+ln -s ../browser-provider.service %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants/
 ln -s ../browser-provider.socket %{buildroot}%{_libdir}/systemd/system/sockets.target.wants/
 
 %post
@@ -123,7 +123,7 @@ mkdir -p %{_notifydir}
 %{_license_path}/%{name}
 %manifest %{name}.manifest
 %{_libdir}/systemd/system/browser-provider.service
-#%{_libdir}/systemd/system/graphical.target.wants/browser-provider.service
+%{_libdir}/systemd/system/multi-user.target.wants/browser-provider.service
 %{_libdir}/systemd/system/browser-provider.socket
 %{_libdir}/systemd/system/sockets.target.wants/browser-provider.socket
 
