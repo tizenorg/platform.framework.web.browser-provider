@@ -93,10 +93,8 @@ make %{?jobs:-j%jobs}
 rm -rf %{buildroot}
 %make_install
 
-mkdir -p %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants
-mkdir -p %{buildroot}%{_libdir}/systemd/system/sockets.target.wants
-ln -s ../browser-provider.service %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants/
-ln -s ../browser-provider.socket %{buildroot}%{_libdir}/systemd/system/sockets.target.wants/
+%install_service multi-user.target.wants browser-provider.service
+%install_service sockets.target.wants browser-provider.socket
 
 %post
 /sbin/ldconfig
@@ -122,10 +120,10 @@ mkdir -p %{_notifydir}
 %{_libdir}/libcapi-web-history.so.0
 %{_license_path}/%{name}
 %manifest %{name}.manifest
-%{_libdir}/systemd/system/browser-provider.service
-%{_libdir}/systemd/system/multi-user.target.wants/browser-provider.service
-%{_libdir}/systemd/system/browser-provider.socket
-%{_libdir}/systemd/system/sockets.target.wants/browser-provider.socket
+%{_unitdir}/browser-provider.service
+%{_unitdir}/multi-user.target.wants/browser-provider.service
+%{_unitdir}/browser-provider.socket
+%{_unitdir}/sockets.target.wants/browser-provider.socket
 
 %files devel
 %defattr(-,root,root,-)

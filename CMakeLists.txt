@@ -51,8 +51,8 @@ ADD_SUBDIRECTORY(history-adaptor/)
 
 PROJECT(${PKG_NAME} C)
 
-INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/systemd/browser-provider.service DESTINATION ${LIB_INSTALL_DIR}/systemd/system)
-INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/systemd/browser-provider.socket DESTINATION ${LIB_INSTALL_DIR}/systemd/system)
+INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/systemd/browser-provider.service DESTINATION lib/systemd/system)
+INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/systemd/browser-provider.socket DESTINATION lib/systemd/system)
 
 IF(DEFINED PKG_LICENSE_PATH)
 	CONFIGURE_FILE(LICENSE.APLv2 share/license/${PROJECT_NAME})
