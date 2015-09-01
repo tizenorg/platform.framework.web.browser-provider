@@ -102,6 +102,8 @@ mkdir -p %{_resource_install_path}
 mkdir -p %{_scrapdir}
 mkdir -p %{_databasedir}
 mkdir -p %{_notifydir}
+chsmack -a 'System::Shared' %{_notifydir}
+chsmack -t %{_notifydir}
 
 %postun -p /sbin/ldconfig
 
