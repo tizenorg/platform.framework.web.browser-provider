@@ -90,6 +90,7 @@ int bp_shm_read_copy(bp_shm_defs *shm, unsigned char **value,
 
 int bp_shm_is_ready(bp_shm_defs *shm, int length)
 {
+#ifndef NO_USE_SHM
 	if (shm != NULL) {
 		if (shm->id < 0 || shm->mem == NULL) {
 			if (bp_shm_alloc(shm) < 0)
@@ -98,5 +99,6 @@ int bp_shm_is_ready(bp_shm_defs *shm, int length)
 		if (shm->mem != NULL && length <= BASIC_SHM_SIZE)
 			return 0;
 	}
+#endif
 	return -1;
 }

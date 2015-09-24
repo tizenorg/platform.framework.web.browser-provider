@@ -18,6 +18,7 @@
 #define BROWSER_PROVIDER_SHM_H
 
 #define BASIC_SHM_SIZE 3145728 //3M // 1445760 (720*502*4)
+#define NO_USE_SHM //Not using bp_shm_xxx, smack deny during the shmget on browser application.
 
 typedef struct {
 	int key;
