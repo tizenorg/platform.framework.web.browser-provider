@@ -163,19 +163,6 @@ static int __bp_dp_rebuild_tables(sqlite3 *handle, bp_client_type_defs adaptor_t
 		if (ret == SQLITE_OK && __check_table(handle, BP_DB_TABLE_WEBICONS) < 0) {
 			ret = sqlite3_exec(handle, BP_SCHEMA_IMAGE(BP_DB_TABLE_WEBICONS, BP_DB_TABLE_HISTORY), 0, 0, 0);
 		}
-	} else if (adaptor_type == BP_CLIENT_SCRAP) {
-		if (__check_table(handle, BP_DB_TABLE_SCRAP) < 0) {
-			ret = sqlite3_exec(handle, BP_SCHEMA_SCRAPS, 0, 0, 0);
-		}
-		if (ret == SQLITE_OK && __check_table(handle, BP_DB_TABLE_FAVICONS) < 0) {
-			ret = sqlite3_exec(handle, BP_SCHEMA_IMAGE(BP_DB_TABLE_FAVICONS, BP_DB_TABLE_SCRAP), 0, 0, 0);
-		}
-		if (ret == SQLITE_OK && __check_table(handle, BP_DB_TABLE_THUMBNAILS) < 0) {
-			ret = sqlite3_exec(handle, BP_SCHEMA_IMAGE(BP_DB_TABLE_THUMBNAILS, BP_DB_TABLE_SCRAP), 0, 0, 0);
-		}
-		if (ret == SQLITE_OK && __check_table(handle, BP_DB_TABLE_TAGS) < 0) {
-			ret = sqlite3_exec(handle, BP_SCHEMA_TAGS(BP_DB_TABLE_TAGS, BP_DB_TABLE_SCRAP), 0, 0, 0);
-		}
 	} else if (adaptor_type == BP_CLIENT_TABS) {
 		if (__check_table(handle, BP_DB_TABLE_TABS) < 0) {
 			ret = sqlite3_exec(handle, BP_SCHEMA_TABS, 0, 0, 0);
@@ -220,9 +207,6 @@ int bp_db_open(sqlite3 **handle, char *database)
 		} else if (strncmp(DATABASE_HISTORY_FILE, database, length) == 0) {
 			adaptor_type = BP_CLIENT_HISTORY;
 			check_table = BP_DB_TABLE_HISTORY;
-		} else if (strncmp(DATABASE_SCRAP_FILE, database, length) == 0) {
-			adaptor_type = BP_CLIENT_SCRAP;
-			check_table = BP_DB_TABLE_SCRAP;
 		} else if (strncmp(DATABASE_TAB_FILE, database, length) == 0) {
 			adaptor_type = BP_CLIENT_TABS;
 			check_table = BP_DB_TABLE_TABS;
@@ -392,16 +376,6 @@ sqlite3_stmt *bp_db_prepare_basic_get_info_stmt(sqlite3 *handle,
 			BP_DB_COMMON_COL_DATETIME_MODIFIED,
 			BP_DB_COMMON_COL_DATETIME_VISITED,
 			BP_DB_COMMON_COL_URL, BP_DB_COMMON_COL_TITLE,
-			table, cond_column);
-	} else if (strncmp(BP_DB_TABLE_SCRAP, table, table_length) == 0) {
-		query = sqlite3_mprintf
-			("SELECT %s, %s, %s, %s, %s, %s, %s, %s, %s FROM %s WHERE %s = ?",
-			BP_DB_SCRAP_COL_BASE_DIR, BP_DB_SCRAP_COL_PAGE_PATH,
-			BP_DB_COMMON_COL_URL, BP_DB_COMMON_COL_TITLE,
-			BP_DB_COMMON_COL_DATETIME_CREATED,
-			BP_DB_COMMON_COL_DATETIME_MODIFIED, BP_DB_SCRAP_COL_IS_READ,
-			BP_DB_SCRAP_COL_IS_READER,
-			BP_DB_SCRAP_COL_IS_NIGHT_MODE,
 			table, cond_column);
 	} else {
 		query = sqlite3_mprintf

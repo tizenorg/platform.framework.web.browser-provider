@@ -42,7 +42,6 @@
 
 #include "browser-provider-tabs.h"
 #include "browser-provider-bookmarks.h"
-#include "browser-provider-scraps.h"
 #include "browser-provider-history.h"
 
 void bp_terminate(int signo);
@@ -143,18 +142,6 @@ static char *__print_cmd(bp_command_defs cmd)
 		return "GET_ACCESS_COUNT";
 	case BP_CMD_BOOKMARK_BACKUP:
 		return "BACKUP";
-	case BP_CMD_SCRAP_GET_BASE_DIR:
-		return "GET_BASE_DIR";
-	case BP_CMD_SCRAP_GET_PAGE_PATH:
-		return "GET_PAGE_PATH";
-	case BP_CMD_SCRAP_GET_IS_READ:
-		return "GET_IS_READ";
-	case BP_CMD_SCRAP_GET_IS_READER:
-		return "GET_IS_READER";
-	case BP_CMD_SCRAP_GET_IS_NIGHT_MODE:
-		return "GET_IS_NIGHT_MODE";
-	case BP_CMD_SCRAP_GET_MAIN_CONTENT:
-		return "GET_MAIN_CONTENT";
 	case BP_CMD_CSC_BOOKMARK_GET_ALL:
 		return "CSC_GET_ALL";
 	case BP_CMD_HISTORY_GET_FREQUENCY:
@@ -249,18 +236,6 @@ static char *__print_cmd(bp_command_defs cmd)
 		return "RESTORE";
 	case BP_CMD_BOOKMARK_DELETE_NO_CARE_CHILD:
 		return "DELETE_NO_CARE_CHILD";
-	case BP_CMD_SCRAP_SET_BASE_DIR:
-		return "SET_BASE_DIR";
-	case BP_CMD_SCRAP_SET_PAGE_PATH:
-		return "SET_PAGE_PATH";
-	case BP_CMD_SCRAP_SET_IS_READ:
-		return "SET_IS_READ";
-	case BP_CMD_SCRAP_SET_IS_READER:
-		return "SET_IS_READER";
-	case BP_CMD_SCRAP_SET_IS_NIGHT_MODE:
-		return "SET_IS_NIGHT_MODE";
-	case BP_CMD_SCRAP_SET_MAIN_CONTENT:
-		return "SET_MAIN_CONTENT";
 	case BP_CMD_HISTORY_SET_FREQUENCY:
 		return "SET_FREQUENCY";
 	case BP_CMD_HISTORY_SET_VISIT:
@@ -286,10 +261,6 @@ static char *__print_client_type(bp_client_type_defs type)
 		return "BOOKMARK_SYNC";
 	case BP_CLIENT_BOOKMARK_CSC:
 		return "BOOKMARK_CSC";
-	case BP_CLIENT_SCRAP:
-		return "SCRAP";
-	case BP_CLIENT_SCRAP_SYNC:
-		return "SCRAP_SYNC";
 	case BP_CLIENT_HISTORY:
 		return "HISTORY";
 	case BP_CLIENT_HISTORY_SYNC:
@@ -393,11 +364,6 @@ static bp_error_defs __handle_client_request(bp_client_defs *client)
 			errorcode = bp_bookmark_handle_requests
 					(g_bp_slots, client, &client_cmd);
 			break;
-		case BP_CLIENT_SCRAP:
-		case BP_CLIENT_SCRAP_SYNC:
-			errorcode = bp_scraps_handle_requests
-					(g_bp_slots, client, &client_cmd);
-			break;
 		case BP_CLIENT_HISTORY:
 			errorcode = bp_history_handle_requests
 					(g_bp_slots, client, &client_cmd);
@@ -438,10 +404,6 @@ void *client_thread_idle(void *arg)
 		case BP_CLIENT_BOOKMARK_SYNC:
 		case BP_CLIENT_BOOKMARK_CSC:
 			errorcode = bp_bookmark_ready_resource();
-			break;
-		case BP_CLIENT_SCRAP:
-		case BP_CLIENT_SCRAP_SYNC:
-			errorcode = bp_scraps_ready_resource();
 			break;
 		case BP_CLIENT_HISTORY:
 		case BP_CLIENT_HISTORY_SYNC:
@@ -738,10 +700,6 @@ void bp_thread_requests_manager(bp_privates_defs *privates)
 				case BP_CLIENT_BOOKMARK_SYNC:
 				case BP_CLIENT_BOOKMARK_CSC:
 					privates->slots[i].client->privilege_label = SECURITY_PRIVILEGE_BOOKMARK;
-					break;
-				case BP_CLIENT_SCRAP:
-				case BP_CLIENT_SCRAP_SYNC:
-					privates->slots[i].client->privilege_label = SECURITY_PRIVILEGE_SCRAP;
 					break;
 				case BP_CLIENT_HISTORY:
 				case BP_CLIENT_HISTORY_SYNC:

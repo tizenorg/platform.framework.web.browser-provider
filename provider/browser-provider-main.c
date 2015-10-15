@@ -32,7 +32,6 @@
 
 #include "browser-provider-tabs.h"
 #include "browser-provider-bookmarks.h"
-#include "browser-provider-scraps.h"
 #include "browser-provider-history.h"
 
 bp_privates_defs *g_privates = NULL;
@@ -190,7 +189,6 @@ int main()
 	}
 	bp_tabs_free_resource();
 	bp_bookmark_free_resource();
-	bp_scraps_free_resource();
 	bp_history_free_resource();
 
 #ifdef SUPPORT_BOOTING_DONE

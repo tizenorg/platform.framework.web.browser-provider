@@ -30,7 +30,6 @@ BuildRequires:  pkgconfig(openssl)
 
 %define _databasedir %{_data_install_path}/database
 %define _notifydir %{_data_install_path}/notify
-%define _scrapdir %{_data_install_path}/scraps
 %define _ipc_socket %{_resource_install_path}/%{name}.sock
 %define _license_path /usr/share/license
 %define _cloud_pdm_server /usr/bin/cloud-pdm-server
@@ -65,7 +64,6 @@ Description: sync in background (developement files)
 		-DCLOUD_PDM_SERVER:PATH=%{_cloud_pdm_server} \\\
 		-DPROVIDER_DIR:PATH=%{_data_install_path} \\\
 		-DDATABASE_DIR:PATH=%{_databasedir} \\\
-		-DSCRAP_DIR:PATH=%{_scrapdir} \\\
 		-DNOTIFY_DIR:PATH=%{_notifydir} \\\
 		-DIPC_SOCKET:PATH=%{_ipc_socket} \\\
 		-DSUPPORT_CLOUD_SYSTEM:BOOL=ON \\\
@@ -99,7 +97,6 @@ rm -rf %{buildroot}
 %post
 /sbin/ldconfig
 mkdir -p %{_resource_install_path}
-mkdir -p %{_scrapdir}
 mkdir -p %{_databasedir}
 mkdir -p %{_notifydir}
 chsmack -a 'System::Shared' %{_notifydir}
@@ -114,8 +111,6 @@ chsmack -t %{_notifydir}
 %{_libdir}/libcapi-web-bookmark-csc.so.0
 %{_libdir}/libcapi-web-bookmark.so.%{version}
 %{_libdir}/libcapi-web-bookmark.so.0
-%{_libdir}/libcapi-web-scrap.so.%{version}
-%{_libdir}/libcapi-web-scrap.so.0
 %{_libdir}/libcapi-web-tab.so.%{version}
 %{_libdir}/libcapi-web-tab.so.0
 %{_libdir}/libcapi-web-history.so.%{version}
@@ -132,31 +127,25 @@ chsmack -t %{_notifydir}
 %{_includedir}/web/web_bookmark_csc.h
 #%{_includedir}/web/web_bookmark_csc_doc.h
 %{_includedir}/web/web_bookmark.h
-%{_includedir}/web/web_scrap.h
-#%{_includedir}/web/web_scrap_doc.h
 %{_includedir}/web/web_tab.h
 #%{_includedir}/web/web_tab_doc.h
 %{_includedir}/web/web_history.h
 #%{_includedir}/web/web_history_doc.h
 %{_libdir}/pkgconfig/capi-web-bookmark-csc.pc
 %{_libdir}/pkgconfig/capi-web-bookmark.pc
-%{_libdir}/pkgconfig/capi-web-scrap.pc
 %{_libdir}/pkgconfig/capi-web-tab.pc
 %{_libdir}/pkgconfig/capi-web-history.pc
 %{_libdir}/libcapi-web-bookmark-csc.so
 %{_libdir}/libcapi-web-bookmark.so
-%{_libdir}/libcapi-web-scrap.so
 %{_libdir}/libcapi-web-tab.so
 %{_libdir}/libcapi-web-history.so
 #deprecated below
 %{_includedir}/web/bookmark-csc-adaptor.h
 %{_includedir}/web/bookmark-adaptor.h
-%{_includedir}/web/scrap-adaptor.h
 %{_includedir}/web/tab-adaptor.h
 %{_includedir}/web/history-adaptor.h
 %{_libdir}/pkgconfig/bookmark-csc-adaptor.pc
 %{_libdir}/pkgconfig/bookmark-adaptor.pc
-%{_libdir}/pkgconfig/scrap-adaptor.pc
 %{_libdir}/pkgconfig/tab-adaptor.pc
 %{_libdir}/pkgconfig/history-adaptor.pc
 

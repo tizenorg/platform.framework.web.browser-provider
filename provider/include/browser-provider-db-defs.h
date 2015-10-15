@@ -20,7 +20,6 @@
 // Tables
 #define BP_DB_TABLE_TABS "tabs"
 #define BP_DB_TABLE_BOOKMARK "bookmarks"
-#define BP_DB_TABLE_SCRAP "scraps"
 #define BP_DB_TABLE_HISTORY "history"
 #define BP_DB_TABLE_FAVICONS "favicons"
 #define BP_DB_TABLE_THUMBNAILS "thumbnails"
@@ -70,23 +69,6 @@
 #define BP_DB_BOOKMARK_COL_IS_EDITABLE "editable"
 #define BP_DB_BOOKMARK_COL_ACCESS_COUNT "accesscount"
 #define BP_DB_BOOKMARK_COL_IS_OPERATOR "is_operator"
-
-// scraps
-#define BP_DB_SCRAP_COL_BASE_DIR "base_dir_path"
-#define BP_DB_SCRAP_COL_PAGE_PATH "page_path"
-#define BP_DB_SCRAP_COL_BITMAP_PATH "bitmap_path"
-#define BP_DB_SCRAP_COL_DESC "description"
-#define BP_DB_SCRAP_COL_VERSION "version"
-#define BP_DB_SCRAP_COL_IS_IMAGE "is_image"
-#define BP_DB_SCRAP_COL_IS_READ "is_read"
-#define BP_DB_SCRAP_COL_IS_READER "is_reader"
-#define BP_DB_SCRAP_COL_IS_NIGHT_MODE "is_night_mode"
-#define BP_DB_SCRAP_COL_MAIN_CONTENT "main_content"
-#define BP_DB_SCRAP_COL_IS_SYNCED "is_synced"
-#define BP_DB_SCRAP_COL_SYNC1 "sync1"
-#define BP_DB_SCRAP_COL_SYNC2 "sync2"
-#define BP_DB_SCRAP_COL_SYNC3 "sync3"
-#define BP_DB_SCRAP_COL_SYNC4 "sync4"
 
 // history
 #define BP_DB_HISTORY_COL_FREQUENCY "frequency"
@@ -148,35 +130,6 @@ date_created INTEGER DEFAULT 0,\
 date_modified INTEGER DEFAULT 0\
 )"
 
-#define BP_SCHEMA_SCRAPS "CREATE TABLE scraps(\
-id INTEGER UNIQUE PRIMARY KEY DESC NOT NULL,\
-base_dir_path TEXT DEFAULT NULL,\
-page_path TEXT DEFAULT NULL,\
-bitmap_path TEXT DEFAULT NULL,\
-url TEXT DEFAULT NULL,\
-title TEXT DEFAULT NULL,\
-description TEXT DEFAULT NULL,\
-main_content TEXT DEFAULT NULL,\
-version INTEGER DEFAULT 0,\
-is_image BOOLEAN DEFAULT 0,\
-is_read BOOLEAN DEFAULT 0,\
-is_reader BOOLEAN DEFAULT 0,\
-is_night_mode BOOLEAN DEFAULT 0,\
-is_synced BOOLEAN DEFAULT 0,\
-is_deleted BOOLEAN DEFAULT 0,\
-dirty BOOLEAN DEFAULT 0,\
-account_name TEXT DEFAULT NULL,\
-account_type TEXT DEFAULT NULL,\
-device_name TEXT DEFAULT NULL,\
-device_id TEXT DEFAULT NULL,\
-date_created INTEGER DEFAULT 0,\
-date_modified INTEGER DEFAULT 0,\
-sync1 TEXT DEFAULT NULL,\
-sync2 TEXT DEFAULT NULL,\
-sync3 TEXT DEFAULT NULL,\
-sync4 TEXT DEFAULT NULL\
-)"
-
 #define BP_SCHEMA_HISTORY "CREATE TABLE history(\
 id INTEGER UNIQUE PRIMARY KEY DESC NOT NULL,\
 is_deleted BOOLEAN DEFAULT 0,\
@@ -212,7 +165,6 @@ FOREIGN KEY(id) REFERENCES "parent"(id) ON DELETE CASCADE\
 )"
 
 #define DATABASE_BOOKMARK_FILE DATABASE_DIR"/.browser-provider-bookmarks.db"
-#define DATABASE_SCRAP_FILE DATABASE_DIR"/.browser-provider-scraps.db"
 #define DATABASE_TAB_FILE DATABASE_DIR"/.browser-provider-tabs.db"
 #define DATABASE_HISTORY_FILE DATABASE_DIR"/.browser-provider-history.db"
 

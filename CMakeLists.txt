@@ -43,7 +43,6 @@ IF(DEFINED NOTIFY_DIR)
 ENDIF(DEFINED NOTIFY_DIR)
 
 ADD_SUBDIRECTORY(provider/)
-ADD_SUBDIRECTORY(scrap-adaptor/)
 ADD_SUBDIRECTORY(tab-adaptor/)
 ADD_SUBDIRECTORY(bookmark-adaptor/)
 ADD_SUBDIRECTORY(bookmark-csc-adaptor/)
