@@ -2053,6 +2053,14 @@ bp_error_defs bp_bookmark_handle_requests(bp_client_slots_defs *slots,
 			break;
 		}
 #endif
+#ifdef SUPPORT_CLOUD_SYNC
+		TRACE_DEBUG("client->type: %d",client->type);
+		if (client->type == BP_CLIENT_BOOKMARK_SYNC) {
+				TRACE_DEBUG("BP_CLIENT_BOOKMARK_SYNC");
+				errorcode = __bp_bookmark_set_is_deleted_no_care_child(sock, id);
+			break;
+		}
+#endif
 
 		errorcode = __bp_bookmark_delete_no_care_child(sock, id);
 		break;
@@ -2072,6 +2080,15 @@ bp_error_defs bp_bookmark_handle_requests(bp_client_slots_defs *slots,
 			break;
 		}
 #endif
+#ifdef SUPPORT_CLOUD_SYNC
+				TRACE_DEBUG("client->type: %d",client->type);
+				if (client->type == BP_CLIENT_BOOKMARK_SYNC) {
+						TRACE_DEBUG("BP_CLIENT_BOOKMARK_SYNC");
+						errorcode = __bp_bookmark_set_is_deleted(sock, id);
+					break;
+				}
+#endif
+
 
 		errorcode = __bp_bookmark_delete(sock, id);
 		break;
@@ -2125,6 +2142,16 @@ bp_error_defs bp_bookmark_handle_requests(bp_client_slots_defs *slots,
 				break;
 			}
 #endif
+#ifdef SUPPORT_CLOUD_SYNC
+							TRACE_DEBUG("client->type: %d",client->type);
+							if (client->type == BP_CLIENT_BOOKMARK_SYNC) {
+									TRACE_DEBUG("BP_CLIENT_BOOKMARK_SYNC");
+									errorcode = __bp_bookmark_delete_all_childs(WEB_BOOKMARK_ROOT_ID, 0);
+									bp_ipc_send_errorcode(sock, errorcode);
+								break;
+							}
+#endif
+
 
 			errorcode = __bp_bookmark_reset(sock);
 		}

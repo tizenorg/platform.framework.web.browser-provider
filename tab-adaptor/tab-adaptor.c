@@ -30,6 +30,11 @@
 #include <browser-provider-db-defs.h>
 #include <browser-provider-socket.h>
 
+#ifdef SUPPORT_CLOUD_SYNC
+#include <sync-adaptor.h>
+#include <sync-adaptor-tab.h>
+#endif
+
 static bp_adaptor_defs *g_adaptorinfo = NULL;
 static pthread_mutex_t g_adaptor_mutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_t g_adaptor_event_thread_pid = 0;
@@ -83,6 +88,11 @@ static int __browser_adaptor_connect(int callback)
 #ifdef SUPPORT_CLOUD_SYSTEM
 		if (bp_common_adaptor_is_sync_adaptor() == 0)
 			client_type = BP_CLIENT_TABS_SYNC;
+#endif
+#ifdef SUPPORT_CLOUD_SYNC
+				if (bp_sync_is_login()){
+					client_type = BP_CLIENT_TABS_SYNC;
+				}
 #endif
 
 		if (bp_common_adaptor_connect_to_provider(&g_adaptorinfo,
@@ -877,6 +887,13 @@ int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info)
 		bp_tab_adaptor_set_snapshot(*id, info->thumbnail_width,
 			info->thumbnail_height, info->thumbnail, info->thumbnail_length);
 	}
+
+#ifdef SUPPORT_CLOUD_SYNC
+	if (info->sync != NULL) {
+		bp_tab_adaptor_set_sync(*id, info->sync);
+	}
+#endif
+
 	return 0;
 }
 

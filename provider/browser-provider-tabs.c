@@ -913,6 +913,14 @@ bp_error_defs bp_tabs_handle_requests(bp_client_slots_defs *slots,
 			break;
 		}
 #endif
+#ifdef SUPPORT_CLOUD_SYNC
+				if (client->type == BP_CLIENT_TABS_SYNC) {
+					errorcode = bp_common_set_is_deleted
+						(g_db_handle, &g_db_mutex, BP_DB_TABLE_TABS, sock, id);
+					break;
+				}
+#endif
+
 		errorcode = bp_common_delete
 				(g_db_handle, &g_db_mutex, BP_DB_TABLE_TABS, sock, id);
 		break;

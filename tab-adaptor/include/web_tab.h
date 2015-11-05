@@ -751,6 +751,8 @@ EXPORT_API int bp_tab_adaptor_get_duplicated_ids_p
 /**
  * @}
  */
+EXPORT_API int bp_sync_tab_login(char* guid, char* accesstoken, char* app_id, char* package_name);
+EXPORT_API int bp_sync_tab(void);
 
 #ifdef __cplusplus
 }

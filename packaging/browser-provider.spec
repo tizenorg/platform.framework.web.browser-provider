@@ -12,7 +12,7 @@ Requires(post): /usr/bin/sqlite3
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(dlog)
 BuildRequires:  pkgconfig(sqlite3)
-#BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
 #BuildRequires:  pkgconfig(gobject-2.0)
 #BuildRequires:  pkgconfig(ecore)
 #BuildRequires:  pkgconfig(edbus)
@@ -25,6 +25,13 @@ BuildRequires:  pkgconfig(cynara-creds-socket)
 BuildRequires:  pkgconfig(cynara-session)
 BuildRequires:  pkgconfig(openssl)
 
+%define _cloud_sync_enabled ON
+%if %{?_cloud_sync_enabled} == ON
+BuildRequires:  pkgconfig(iotcloud)
+BuildRequires:  pkgconfig(notification)
+BuildRequires:  pkgconfig(json-c)
+%endif
+
 %define _data_install_path /opt/usr/data/%{name}
 %define _resource_install_path /opt/data/%{name}
 
@@ -32,7 +39,6 @@ BuildRequires:  pkgconfig(openssl)
 %define _notifydir %{_data_install_path}/notify
 %define _ipc_socket %{_resource_install_path}/%{name}.sock
 %define _license_path /usr/share/license
-%define _cloud_pdm_server /usr/bin/cloud-pdm-server
 
 %description
 Description: sync in background
@@ -61,7 +67,6 @@ Description: sync in background (developement files)
 		-DPKG_VERSION=%{version} \\\
 		-DPKG_RELEASE=%{release} \\\
 		-DPKG_LICENSE_PATH:PATH=%{_license_path} \\\
-		-DCLOUD_PDM_SERVER:PATH=%{_cloud_pdm_server} \\\
 		-DPROVIDER_DIR:PATH=%{_data_install_path} \\\
 		-DDATABASE_DIR:PATH=%{_databasedir} \\\
 		-DNOTIFY_DIR:PATH=%{_notifydir} \\\
@@ -71,6 +76,7 @@ Description: sync in background (developement files)
 		-DSUPPORT_LOG_MESSAGE:BOOL=ON \\\
 		-DSUPPORT_FILE_LOGGING:BOOL=OFF \\\
 		-DSUPPORT_SERVER_PRIVILEGE:BOOL=ON \\\
+		-DSUPPORT_CLOUD_SYNC:BOOL=%{_cloud_sync_enabled} \\\
 		%if "%{?_lib}" == "lib64" \
 		%{?_cmake_lib_suffix64} \\\
 		%endif \

@@ -10,6 +10,10 @@ MESSAGE("Build type: ${CMAKE_BUILD_TYPE}")
 
 SET(PC_REQUIRED "dlog libpng")
 
+IF(SUPPORT_CLOUD_SYNC)
+	SET(PC_REQUIRED "dlog libpng iotcloud notification json-c glib-2.0")
+ENDIF(SUPPORT_CLOUD_SYNC)
+
 INCLUDE(FindPkgConfig)
 
 pkg_check_modules(bookmark_adaptor_pkgs REQUIRED ${PC_REQUIRED})
@@ -33,13 +37,25 @@ SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -Wall")
 
 ADD_DEFINITIONS(-DBROWSER_PROVIDER_LOG_TAG=\"BOOKMARK_ADAPTOR\")
 
-ADD_LIBRARY(${PROJECT_NAME} SHARED
+SET(BP_BOOKMARK_ADAPTOR_SOURCES
 	${CMAKE_SOURCE_DIR}/common-adaptor/common-adaptor.c
 	${CMAKE_SOURCE_DIR}/common-adaptor/common-adaptor-png.c
 	${CMAKE_SOURCE_DIR}/provider/browser-provider-socket.c
 	${CMAKE_SOURCE_DIR}/provider/browser-provider-shm.c
 	${CMAKE_CURRENT_SOURCE_DIR}/bookmark-adaptor-image.c
 	${CMAKE_CURRENT_SOURCE_DIR}/bookmark-adaptor.c )
+
+IF(SUPPORT_CLOUD_SYNC)
+	LIST(APPEND BP_BOOKMARK_ADAPTOR_SOURCES
+	${CMAKE_SOURCE_DIR}/common-adaptor/sync-adaptor.c
+	${CMAKE_SOURCE_DIR}/common-adaptor/sync-adaptor-bookmark.c
+	${CMAKE_SOURCE_DIR}/common-adaptor/sync-adaptor-cloud-bookmark.c
+	${CMAKE_SOURCE_DIR}/common-adaptor/sync-adaptor-cloud.c
+	${CMAKE_SOURCE_DIR}/common-adaptor/sync-adaptor-cloud-json.c)
+ENDIF(SUPPORT_CLOUD_SYNC)
+
+ADD_LIBRARY(${PROJECT_NAME} SHARED ${BP_BOOKMARK_ADAPTOR_SOURCES})
+
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${bookmark_adaptor_pkgs_LDFLAGS} ${BOOKMARK_LINK_LIBRARIES})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION ${PKG_VERSION})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES SOVERSION 0)

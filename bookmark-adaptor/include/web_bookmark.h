@@ -1197,9 +1197,30 @@ EXPORT_API int bp_bookmark_adaptor_get_raw_retrieved_ids_p
 */
 EXPORT_API int bp_bookmark_adaptor_reset(void);
 
+
+/**
+ * @brief Gets the array of ids and the number of rows of all deleted items from the storage
+ * @remarks Allocated memory (ids) has to be released by the caller
+ * @param[out] ids The array of ids
+ * @param[out] count The array size
+ * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
+ */
+EXPORT_API int bp_bookmark_adaptor_get_deleted_ids_p(int **ids, int *count);
+
+/**
+ * @brief Ddeletes all tabs having set 'is_deleted' property from the storage
+ * @details If cloud is on, "is_dirty" property is off by calling delete function,\n
+ * 			if cloud is off, a scrap is deleted really from storage whenever delete function is called.
+ * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
+ */
+EXPORT_API int bp_bookmark_adaptor_clear_deleted_ids(void);
+
 /**
  * @}
  */
+
+EXPORT_API int bp_sync_bookmark_login(char* guid, char* accesstoken, char* app_id, char* package_name);
+EXPORT_API int bp_sync_bookmark(void);
 
 #ifdef __cplusplus
 }
