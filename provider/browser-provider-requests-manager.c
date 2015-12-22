@@ -464,8 +464,10 @@ void *client_thread_idle(void *arg)
 
 	}
 
-	FD_CLR(client->cmd_socket, &imask);
-	FD_CLR(client->cmd_socket, &emask);
+	if (client != NULL) {
+		FD_CLR(client->cmd_socket, &imask);
+		FD_CLR(client->cmd_socket, &emask);
+	}
 	bp_client_free(client);
 	slot->client = NULL;
 	return 0;
