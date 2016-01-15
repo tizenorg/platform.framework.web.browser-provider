@@ -31,7 +31,6 @@ extern "C"
  */
 
 /**
- * @internal
  * @addtogroup CAPI_WEB_HISTORY_MODULE
  * @{
  */
