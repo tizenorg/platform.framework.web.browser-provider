@@ -51,7 +51,7 @@ static char *__bp_history_get_date_query(int is_deleted, bp_history_date_defs da
 				checkcolumn);
 	} else if (date_type == BP_HISTORY_DATE_LAST_7_DAYS) {
 		date_cond =
-			sqlite3_mprintf("DATE(%s) < DATE('now', '-2 days') AND DATE(%s) > DATE('now','-7 days')",
+			sqlite3_mprintf("DATE(%s) <= DATE('now', '-2 days') AND DATE(%s) > DATE('now','-7 days')",
 				checkcolumn, checkcolumn);
 	} else if (date_type == BP_HISTORY_DATE_LAST_MONTH) {
 		date_cond =
