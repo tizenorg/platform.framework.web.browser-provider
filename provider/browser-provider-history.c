@@ -55,11 +55,11 @@ static char *__bp_history_get_date_query(int is_deleted, bp_history_date_defs da
 				checkcolumn, checkcolumn);
 	} else if (date_type == BP_HISTORY_DATE_LAST_MONTH) {
 		date_cond =
-			sqlite3_mprintf("DATE(%s) <= DATE('now','-1 months') AND DATE(%s) > DATE('now', '-2 months')",
+			sqlite3_mprintf("DATE(%s) <= DATE('now','-7 days') AND DATE(%s) > DATE('now', '-1 months')",
 				checkcolumn, checkcolumn);
 	} else if (date_type == BP_HISTORY_DATE_OLDER) {
 		date_cond =
-			sqlite3_mprintf("DATE(%s) <= DATE('now', '-2 months')",
+			sqlite3_mprintf("DATE(%s) <= DATE('now', '-1 months')",
 				checkcolumn);
 	}
 
