@@ -23,12 +23,13 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <tzplatform_config.h>
 #define LOG_TAG BROWSER_PROVIDER_LOG_TAG
 static inline void bp_ftrace(char *fmt, ...)
 {
 	static FILE *logd = NULL;
 	if(logd == NULL )
-		logd = fopen("/var/log/browser-provider.log", "a+");
+		logd = fopen(tzplatform_mkpath(TZ_SYS_VAR, "log/browser-provider.log"), "a+");
 
 	va_list args;
 	va_start(args, fmt);

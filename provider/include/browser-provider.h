@@ -21,11 +21,13 @@
 extern "C" {
 #endif
 
+#include <tzplatform_config.h>
+
 #define BP_MAX_STR_LEN 4096
 #define BP_DEFAULT_BUFFER_SIZE 1024
 
 #ifndef IPC_SOCKET
-#define IPC_SOCKET "/opt/data/browser-provider/browser-provider.sock"
+#define IPC_SOCKET tzplatform_mkpath(TZ_SYS_DATA, "browser-provider/browser-provider.sock")
 #endif
 
 #define SECURITY_PRIVILEGE_BOOKMARK "http://tizen.org/privilege/bookmark.admin"

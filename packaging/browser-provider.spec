@@ -24,9 +24,10 @@ BuildRequires:  pkgconfig(cynara-client)
 BuildRequires:  pkgconfig(cynara-creds-socket)
 BuildRequires:  pkgconfig(cynara-session)
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libtzplatform-config)
 
-%define _data_install_path /opt/usr/data/%{name}
-%define _resource_install_path /opt/data/%{name}
+%define _data_install_path %{TZ_SYS_DATA}/%{name}
+%define _resource_install_path %{TZ_SYS_DATA}/%{name}
 
 %define _databasedir %{_data_install_path}/database
 %define _notifydir %{_data_install_path}/notify
