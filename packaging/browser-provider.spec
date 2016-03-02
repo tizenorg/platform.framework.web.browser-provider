@@ -24,13 +24,13 @@ BuildRequires:  pkgconfig(cynara-client)
 BuildRequires:  pkgconfig(cynara-creds-socket)
 BuildRequires:  pkgconfig(cynara-session)
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libtzplatform-config)
 
-%define _data_install_path /opt/usr/data/%{name}
-%define _resource_install_path /opt/data/%{name}
+%define _data_install_path %{TZ_SYS_DATA}/%{name}
 
 %define _databasedir %{_data_install_path}/database
 %define _notifydir %{_data_install_path}/notify
-%define _ipc_socket %{_resource_install_path}/%{name}.sock
+%define _ipc_socket /tmp/.browser-provider.sock
 %define _license_path /usr/share/license
 %define _cloud_pdm_server /usr/bin/cloud-pdm-server
 
@@ -96,7 +96,6 @@ rm -rf %{buildroot}
 
 %post
 /sbin/ldconfig
-mkdir -p %{_resource_install_path}
 mkdir -p %{_databasedir}
 mkdir -p %{_notifydir}
 chsmack -a 'System::Shared' %{_notifydir}

@@ -25,6 +25,8 @@
 #include <sys/un.h>
 #include <sys/stat.h>
 
+#include <tzplatform_config.h>
+
 #include "browser-provider-config.h"
 #include "browser-provider-log.h"
 #include "browser-provider-socket.h"
@@ -85,8 +87,8 @@ static void on_changed_receive(void *data, DBusMessage *msg)
 		TRACE_STRERROR("[ERROR] fock");
 	} else {
 		if(child_pid == 0) {
-			execl("/usr/apps/org.tizen.browser/bin/browser",
-				"/usr/apps/org.tizen.browser/bin/browser",
+			execl(tzplatform_mkpath(TZ_SYS_RO_APPS, "org.tizen.browser/bin/browser"),
+				tzplatform_mkpath(TZ_SYS_RO_APPS, "org.tizen.browser/bin/browser"),
 				"precaching", NULL);
 			TRACE_STRERROR("[ERROR] execl browser precaching");
 			exit(EXIT_SUCCESS);
