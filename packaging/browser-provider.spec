@@ -4,7 +4,7 @@ Summary:    sync in background.
 Version:    1.7.20
 Release:    1
 Group:      Development/Libraries
-License:    Apache License, Version 2.0
+License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
 Requires(post): /usr/bin/sqlite3
 #Requires(post): sys-assert
