@@ -2,8 +2,6 @@
 Description=browser provider service
 
 [Service]
-User=web_fw
-Group=web_fw
 Type=simple
 ExecStart=/usr/bin/browser-provider
 

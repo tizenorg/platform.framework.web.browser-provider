@@ -1,7 +1,7 @@
 
 Name:       browser-provider
 Summary:    sync in background.
-Version:    1.8.1
+Version:    1.8.0
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -9,7 +9,6 @@ Source0:    %{name}-%{version}.tar.gz
 Requires(post): /usr/bin/sqlite3
 #Requires(post): sys-assert
 #Requires(post): libdevice-node
-Requires: security-config
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(dlog)
 BuildRequires:  pkgconfig(sqlite3)
@@ -98,12 +97,9 @@ rm -rf %{buildroot}
 %post
 /sbin/ldconfig
 mkdir -p %{_databasedir}
-chown -R web_fw:web_fw %{_databasedir}
 mkdir -p %{_notifydir}
-chown -R web_fw:web_fw %{_notifydir}
 chsmack -a 'System::Shared' %{_notifydir}
 chsmack -t %{_notifydir}
-chown -R web_fw:web_fw %{_data_install_path}
 
 %postun -p /sbin/ldconfig
 
