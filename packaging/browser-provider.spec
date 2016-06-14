@@ -102,6 +102,7 @@ chown -R web_fw:web_fw %{_databasedir}
 mkdir -p %{_notifydir}
 chown -R web_fw:web_fw %{_notifydir}
 chsmack -a 'System::Shared' %{_notifydir}
+chsmack -a 'System' %{_databasedir}
 chsmack -t %{_notifydir}
 chown -R web_fw:web_fw %{_data_install_path}
 
