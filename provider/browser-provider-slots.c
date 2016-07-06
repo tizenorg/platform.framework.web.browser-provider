@@ -52,7 +52,7 @@ int bp_create_unique_id(void)
 		for (c = 0; c < cipher - 3; c++)
 			disit_unit = disit_unit * 10;
 		uniquetime = tval.tv_sec + ((tval.tv_usec << 2) * 100) +
-				((tval.tv_usec >> (cipher - 1)) * disit_unit) +
+				(((tval.tv_usec >> (cipher - 1)) * disit_unit) & 0x0fff) +
 				((tval.tv_usec + (tval.tv_usec % 10)) & 0x0fff);
 	} while (last_uniquetime == uniquetime);
 	last_uniquetime = uniquetime;
