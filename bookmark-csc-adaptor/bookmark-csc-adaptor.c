@@ -53,7 +53,7 @@ static int __browser_adaptor_disconnect(void)
 	return bp_common_adaptor_disconnect(&g_adaptorinfo, NULL);
 }
 
-static int __bookmark_csc_get_string(const int id,
+static int __bookmark_csc_get_string(const long long int id,
 	bp_command_defs cmd, char **value)
 {
 	if (id < 0) {
@@ -78,7 +78,7 @@ static int __bookmark_csc_get_string(const int id,
 	return ret;
 }
 
-static int __bookmark_csc_set_string(const int id,
+static int __bookmark_csc_set_string(const long long int id,
 	bp_command_defs cmd, const char *value)
 {
 	if (value == NULL || strlen(value) <= 0) {
@@ -345,7 +345,7 @@ int bookmark_csc_get_root(int *id)
 	return 0;
 }
 
-int bookmark_csc_delete(const int id)
+int bookmark_csc_delete(const long long int id)
 {
 	if (id < 0) {
 		TRACE_ERROR("[CHECK id][%d]", id);
@@ -461,7 +461,7 @@ int bookmark_csc_create(int *id, bookmark_csc_info_fmt *info)
 		pthread_mutex_unlock(&g_adaptor_mutex);
 		return -1;
 	}
-	int bookmark_id = bp_adaptor_ipc_read_int(sock);
+	int bookmark_id = bp_adaptor_ipc_read_int64(sock);
 	if (bookmark_id < 0) {
 		if (bp_ipc_check_stderr(BP_ERROR_IO_ERROR) == BP_ERROR_IO_ERROR)
 			__browser_adaptor_disconnect();
@@ -484,7 +484,7 @@ int bookmark_csc_create(int *id, bookmark_csc_info_fmt *info)
 	return ret;
 }
 
-int bookmark_csc_get_info(const int id, bookmark_csc_info_fmt *info)
+int bookmark_csc_get_info(const long long int id, bookmark_csc_info_fmt *info)
 {
 	// get bp_bookmark_base_fmt from provider
 	// need each call for string

@@ -102,7 +102,7 @@ static int __browser_adaptor_connect(int callback)
 	return 0;
 }
 
-static int __bp_history_adaptor_get_string(const int id,
+static int __bp_history_adaptor_get_string(const long long int id,
 	bp_command_defs cmd, char **value)
 {
 	if (id < 0 || value == NULL)
@@ -120,7 +120,7 @@ static int __bp_history_adaptor_get_string(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_get_int(const int id,
+static int __bp_history_adaptor_get_int(const long long int id,
 	bp_command_defs cmd, int *value)
 {
 	if (id < 0 || value == NULL)
@@ -138,7 +138,7 @@ static int __bp_history_adaptor_get_int(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_set_string(const int id,
+static int __bp_history_adaptor_set_string(const long long int id,
 	bp_command_defs cmd, const char *value)
 {
 	if (id < 0 || value == NULL || bp_common_precheck_string(value) < 0)
@@ -156,7 +156,7 @@ static int __bp_history_adaptor_set_string(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_set_int(const int id,
+static int __bp_history_adaptor_set_int(const long long int id,
 	bp_command_defs cmd, const int value)
 {
 	if (id < 0)
@@ -174,7 +174,7 @@ static int __bp_history_adaptor_set_int(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_send_cmd(const int id, bp_command_defs cmd)
+static int __bp_history_adaptor_send_cmd(const long long int id, bp_command_defs cmd)
 {
 	BP_CHECK_PROVIDER_STATUS;
 
@@ -193,7 +193,7 @@ static int __bp_history_adaptor_send_cmd(const int id, bp_command_defs cmd)
 	return 0;
 }
 
-static int __bp_history_adaptor_get_blob(const int id,
+static int __bp_history_adaptor_get_blob(const long long int id,
 	bp_command_defs cmd, unsigned char **value, int *length)
 {
 	if (id < 0 || value == NULL || length == NULL)
@@ -212,7 +212,7 @@ static int __bp_history_adaptor_get_blob(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_get_blob_shm(const int id,
+static int __bp_history_adaptor_get_blob_shm(const long long int id,
 	bp_command_defs cmd, int *width, int *height, unsigned char **value,
 	int *length)
 {
@@ -232,7 +232,7 @@ static int __bp_history_adaptor_get_blob_shm(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_set_blob_shm(const int id,
+static int __bp_history_adaptor_set_blob_shm(const long long int id,
 	bp_command_defs cmd, const int width, const int height,
 	const unsigned char *value, const int length)
 {
@@ -252,7 +252,7 @@ static int __bp_history_adaptor_set_blob_shm(const int id,
 	return ret;
 }
 
-static int __bp_history_adaptor_send_one_way(const int id, bp_command_defs cmd)
+static int __bp_history_adaptor_send_one_way(const long long int id, bp_command_defs cmd)
 {
 	BP_CHECK_PROVIDER_STATUS;
 
@@ -323,7 +323,7 @@ int bp_history_adaptor_create(int *id)
 		pthread_mutex_unlock(&g_adaptor_mutex);
 		return -1;
 	}
-	history_id = bp_adaptor_ipc_read_int(sock);
+	history_id = bp_adaptor_ipc_read_int64(sock);
 	if (history_id < 0) {
 		errorcode = bp_ipc_check_stderr(BP_ERROR_IO_ERROR);
 		BP_PRINT_ERROR(*id, errorcode);
@@ -342,7 +342,7 @@ int bp_history_adaptor_create(int *id)
 	return 0;
 }
 
-int bp_history_adaptor_delete(const int id)
+int bp_history_adaptor_delete(const long long int id)
 {
 	if (id < 0)
 		return -1;
@@ -382,121 +382,121 @@ int bp_history_adaptor_get_errorcode(void)
 	return BP_HISTORY_ERROR_NONE;
 }
 
-int bp_history_adaptor_get_frequency(const int id, int *value)
+int bp_history_adaptor_get_frequency(const long long int id, int *value)
 {
 	return __bp_history_adaptor_get_int
 		(id, BP_CMD_HISTORY_GET_FREQUENCY, value);
 }
 
-int bp_history_adaptor_get_url(const int id, char **value)
+int bp_history_adaptor_get_url(const long long int id, char **value)
 {
 	return __bp_history_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_URL, value);
 }
 
-int bp_history_adaptor_get_title(const int id, char **value)
+int bp_history_adaptor_get_title(const long long int id, char **value)
 {
 	return __bp_history_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_TITLE, value);
 }
 
-int bp_history_adaptor_get_icon(const int id, int *width,
+int bp_history_adaptor_get_icon(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_history_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_ICON, width, height, value, length);
 }
 
-int bp_history_adaptor_get_snapshot(const int id, int *width,
+int bp_history_adaptor_get_snapshot(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_history_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_SNAPSHOT, width, height, value, length);
 }
 
-int bp_history_adaptor_get_webicon(const int id, int *width,
+int bp_history_adaptor_get_webicon(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_history_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_WEBICON, width, height, value, length);
 }
 
-int bp_history_adaptor_get_date_created(const int id, int *value)
+int bp_history_adaptor_get_date_created(const long long int id, int *value)
 {
 	return __bp_history_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_CREATED, value);
 }
 
-int bp_history_adaptor_get_date_modified(const int id, int *value)
+int bp_history_adaptor_get_date_modified(const long long int id, int *value)
 {
 	return __bp_history_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_MODIFIED, value);
 }
 
-int bp_history_adaptor_get_date_visited(const int id, int *value)
+int bp_history_adaptor_get_date_visited(const long long int id, int *value)
 {
 	return __bp_history_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_VISITED, value);
 }
 
-int bp_history_adaptor_set_frequency(const int id, const int value)
+int bp_history_adaptor_set_frequency(const long long int id, const int value)
 {
 	return __bp_history_adaptor_set_int
 		(id, BP_CMD_HISTORY_SET_FREQUENCY, value);
 }
 
-int bp_history_adaptor_set_url(const int id, const char *value)
+int bp_history_adaptor_set_url(const long long int id, const char *value)
 {
 	return __bp_history_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_URL, value);
 }
 
-int bp_history_adaptor_set_title(const int id, const char *value)
+int bp_history_adaptor_set_title(const long long int id, const char *value)
 {
 	return __bp_history_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_TITLE, value);
 }
 
-int bp_history_adaptor_set_icon(const int id, const int width,
+int bp_history_adaptor_set_icon(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_history_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_ICON, width, height, value, length);
 }
 
-int bp_history_adaptor_set_snapshot(const int id, const int width,
+int bp_history_adaptor_set_snapshot(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_history_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_SNAPSHOT, width, height, value, length);
 }
 
-int bp_history_adaptor_set_webicon(const int id, const int width,
+int bp_history_adaptor_set_webicon(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_history_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_WEBICON, width, height, value, length);
 }
 
-int bp_history_adaptor_set_date_created(const int id, const int value)
+int bp_history_adaptor_set_date_created(const long long int id, const int value)
 {
 	return __bp_history_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_CREATED, value);
 }
 
-int bp_history_adaptor_set_date_modified(const int id, const int value)
+int bp_history_adaptor_set_date_modified(const long long int id, const int value)
 {
 	return __bp_history_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_MODIFIED, value);
 }
 
-int bp_history_adaptor_set_date_visited(const int id, const int value)
+int bp_history_adaptor_set_date_visited(const long long int id, const int value)
 {
 	return __bp_history_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_VISITED, value);
 }
 
-int bp_history_adaptor_visit(const int id)
+int bp_history_adaptor_visit(const long long int id)
 {
 	if (id < 0)
 		return -1;
@@ -596,7 +596,7 @@ int bp_history_adaptor_easy_create(int *id, bp_history_info_fmt *info)
 	return 0;
 }
 
-int bp_history_adaptor_get_info(const int id,
+int bp_history_adaptor_get_info(const long long int id,
 	const bp_history_offset offset, bp_history_info_fmt *info)
 {
 	if (id < 0 || offset <= 0 || info == NULL)

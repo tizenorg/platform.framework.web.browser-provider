@@ -83,7 +83,7 @@ int bp_common_precheck_string(const char *str)
 }
 
 void bp_common_print_errorcode(const char *funcname, const int line,
-	const int id, const bp_error_defs errorcode)
+	const long long int id, const bp_error_defs errorcode)
 {
 	switch (errorcode) {
 	case BP_ERROR_IO_ERROR:
@@ -163,7 +163,7 @@ int bp_common_adaptor_connect_to_provider(bp_adaptor_defs **adaptorinfo,
 			return -1;
 		}
 		// send a command
-		int cid = -1;
+		long long int cid = -1;
 		bp_error_defs errorcode = BP_ERROR_NONE;
 		bp_command_defs cmd = BP_CMD_INITIALIZE;
 		if (bp_ipc_send_custom_type(ipcinfo->cmd_socket, &cmd,
@@ -171,7 +171,7 @@ int bp_common_adaptor_connect_to_provider(bp_adaptor_defs **adaptorinfo,
 				bp_ipc_send_custom_type(ipcinfo->cmd_socket, &client_type,
 				sizeof(bp_client_type_defs)) < 0 ||
 				(errorcode = bp_ipc_read_errorcode(ipcinfo->cmd_socket)) != BP_ERROR_NONE ||
-				(cid = bp_adaptor_ipc_read_int(ipcinfo->cmd_socket)) <= 0) {
+				(cid = bp_adaptor_ipc_read_int64(ipcinfo->cmd_socket)) <= 0) {
 			TRACE_ERROR("[CRITICAL] failed to connect with provider");
 			close(ipcinfo->cmd_socket);
 			free(ipcinfo);
@@ -179,6 +179,7 @@ int bp_common_adaptor_connect_to_provider(bp_adaptor_defs **adaptorinfo,
 			usleep(50000);
 			return -1;
 		}
+		TRACE_INFO("bp_common_adaptor_connect_to_provider cid:%lld", cid);
 		ipcinfo->cid = cid;
 		ipcinfo->shm.key = cid;
 		ipcinfo->shm.local = NULL;
@@ -217,6 +218,24 @@ int bp_adaptor_ipc_read_int(int fd)
 
 	int value = -1;
 	ssize_t recv_bytes = read(fd, &value, sizeof(int));
+	if (recv_bytes < 0) {
+		TRACE_STRERROR("[CRITICAL] read");
+		return -1;
+	}
+	return value;
+}
+
+long long int bp_adaptor_ipc_read_int64(int fd)
+{
+	if (fd < 0) {
+		TRACE_ERROR("[CHECK SOCKET]");
+		return -1;
+	}
+
+	long long int value = -1;
+	ssize_t recv_bytes = read(fd, &value, sizeof(long long int));
+	TRACE_INFO("bp_adaptor_ipc_read_int64, size of long long: %d", sizeof(long long int));
+	TRACE_INFO("bp_adaptor_ipc_read_int64, bytes: %d", recv_bytes);
 	if (recv_bytes < 0) {
 		TRACE_STRERROR("[CRITICAL] read");
 		return -1;
@@ -819,6 +838,7 @@ int bp_common_adaptor_event_manager(bp_adaptor_defs *adaptorinfo,
 
 		// blocking fifo.
 		bp_command_defs provider_cmd = BP_CMD_NONE;
+		TRACE_INFO(" at %s, line %d.", __FILE__, __LINE__);
 		if (bp_ipc_recv(sock, &provider_cmd, sizeof(bp_command_defs),
 				__FUNCTION__) <= 0 ||
 					provider_cmd != BP_CMD_COMMON_NOTI) {

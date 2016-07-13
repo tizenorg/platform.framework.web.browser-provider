@@ -459,7 +459,7 @@ static char *__merge_strings(char *dest, const char *src, char sep)
 	return merged;
 }
 
-int bp_db_set_datetime(sqlite3 *handle, int id, char *table,
+int bp_db_set_datetime(sqlite3 *handle, long long int id, char *table,
 	char *column, int timestamp, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -508,7 +508,7 @@ int bp_db_set_datetime(sqlite3 *handle, int id, char *table,
 	return 0;
 }
 
-int bp_db_set_increase_int(sqlite3 *handle, int id, char *table,
+int bp_db_set_increase_int(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -889,7 +889,7 @@ int bp_db_get_custom_conds_ids(sqlite3 *handle, char *table, int *ids,
 	return rows_count;
 }
 
-int bp_db_insert_column(sqlite3 *handle, int id, char *table,
+int bp_db_insert_column(sqlite3 *handle, long long int id, char *table,
 	char *date_column, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -988,7 +988,7 @@ int bp_db_insert3_column(sqlite3 *handle, char *table, char *column,
 	return 0;
 }
 
-int bp_db_set_column(sqlite3 *handle, int id, char *table, char *column,
+int bp_db_set_column(sqlite3 *handle, long long int id, char *table, char *column,
 	bp_column_data_defs datatype, void *value, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -1141,7 +1141,7 @@ static char *__get_updates_query(int count,
 	return conditions;
 }
 
-int bp_db_set_columns(sqlite3 *handle, int id, char *table,
+int bp_db_set_columns(sqlite3 *handle, long long int id, char *table,
 	int columns_count, bp_db_conds_list_fmt *columns,
 	bp_error_defs *error)
 {
@@ -1200,7 +1200,7 @@ int bp_db_set_columns(sqlite3 *handle, int id, char *table,
 
 // success : 0
 // error   : -1
-char *bp_db_get_text_column(sqlite3 *handle, int id, char *table,
+char *bp_db_get_text_column(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -1378,7 +1378,7 @@ char *bp_db_get_cond2_text_column(sqlite3 *handle, char *table,
 	return getstr;
 }
 
-int bp_db_set_blob_column(sqlite3 *handle, int id, char *table,
+int bp_db_set_blob_column(sqlite3 *handle, long long int id, char *table,
 	char *column, int length, unsigned char *value,
 	bp_error_defs *error)
 {
@@ -1427,7 +1427,7 @@ int bp_db_set_blob_column(sqlite3 *handle, int id, char *table,
 	return 0;
 }
 
-sqlite3_stmt *bp_db_get_blob_stmt(sqlite3 *handle, int id, char *table,
+sqlite3_stmt *bp_db_get_blob_stmt(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -1484,7 +1484,7 @@ sqlite3_stmt *bp_db_get_blob_stmt(sqlite3 *handle, int id, char *table,
 	return stmt;
 }
 
-int bp_db_get_blob_column(sqlite3 *handle, int id, char *table,
+int bp_db_get_blob_column(sqlite3 *handle, long long int id, char *table,
 	char *column, unsigned char **data, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -1545,7 +1545,7 @@ int bp_db_get_blob_column(sqlite3 *handle, int id, char *table,
 	return blob_length;
 }
 
-int bp_db_get_int_column(sqlite3 *handle, int id, char *table,
+int bp_db_get_int_column(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error)
 {
 	int errorcode = SQLITE_OK;
@@ -1664,7 +1664,7 @@ static char *__get_selects_query(int count,
 	return conditions;
 }
 
-int bp_db_get_columns(sqlite3 *handle, int id, char *table,
+int bp_db_get_columns(sqlite3 *handle, long long int id, char *table,
 	int columns_count, bp_db_get_columns_fmt *columns,
 	bp_error_defs *error)
 {

@@ -134,7 +134,7 @@ static bp_error_defs __bp_tab_get_duplicated_ids(int sock)
 	return errorcode;
 }
 
-static bp_error_defs __bp_tab_get_info_offset(int sock, int id, bp_shm_defs *shm)
+static bp_error_defs __bp_tab_get_info_offset(int sock, long long int id, bp_shm_defs *shm)
 {
 	BP_PRE_CHECK;
 
@@ -417,7 +417,7 @@ static bp_error_defs __bp_tab_get_info_offset(int sock, int id, bp_shm_defs *shm
 	return BP_ERROR_NONE;
 }
 
-static bp_error_defs __bp_tab_activate(int sock, int id)
+static bp_error_defs __bp_tab_activate(int sock, long long int id)
 {
 	bp_error_defs errorcode = BP_ERROR_NONE;
 	int activate = 0;
@@ -483,7 +483,7 @@ static bp_error_defs __bp_tab_activate(int sock, int id)
 	return errorcode;
 }
 
-static bp_error_defs __bp_tab_set_easy_all(int sock, int id, int ctype)
+static bp_error_defs __bp_tab_set_easy_all(int sock, long long int id, int ctype)
 {
 	BP_PRE_CHECK;
 
@@ -585,6 +585,7 @@ static bp_error_defs __bp_tab_set_easy_all(int sock, int id, int ctype)
 	int check_id = -1;
 	if (id < 0) {
 		id = bp_common_make_unique_id(g_db_handle, &g_db_mutex, BP_DB_TABLE_TABS);
+			TRACE_INFO("bp_common_make_unique_id:%lld", id);
 		if (id < 0) {
 			errorcode = BP_ERROR_DISK_BUSY;
 			goto TAB_SET_ALL_ERROR;
@@ -863,8 +864,8 @@ bp_error_defs bp_tabs_handle_requests(bp_client_slots_defs *slots,
 {
 	bp_command_defs cmd = BP_CMD_NONE;
 	bp_error_defs errorcode = BP_ERROR_NONE;
-	int id = 0;
-	int cid = 0;
+	long long int id = 0;
+	long long int cid = 0;
 	int sock = -1;
 
 	if (slots == NULL) {

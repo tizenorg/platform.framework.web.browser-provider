@@ -147,7 +147,7 @@ int bp_common_is_sync_adaptor(bp_client_type_defs type)
 }
 
 bp_error_defs bp_common_set_dirty(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int id)
+	pthread_mutex_t *mutex, char *table, long long int id)
 {
 	int is_dirty = 1;
 	bp_error_defs errorcode = BP_ERROR_NONE;
@@ -160,11 +160,12 @@ bp_error_defs bp_common_set_dirty(sqlite3 *handle,
 	return errorcode;
 }
 
-int bp_common_make_unique_id(sqlite3 *handle, pthread_mutex_t *mutex,
+long long int bp_common_make_unique_id(sqlite3 *handle, pthread_mutex_t *mutex,
 	char *table)
 {
-	int id = -1;
-	int check_id = -1;
+	TRACE_INFO("bp_common_make_unique_id");
+	long long int id = -1;
+	long long int check_id = -1;
 	bp_error_defs errorcode = BP_ERROR_NONE;
 	unsigned check_count = 0;
 
@@ -187,7 +188,7 @@ int bp_common_make_unique_id(sqlite3 *handle, pthread_mutex_t *mutex,
 }
 
 bp_error_defs bp_common_create(sqlite3 *handle, pthread_mutex_t *mutex,
-	char *table, int sock, int id)
+	char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -201,7 +202,7 @@ bp_error_defs bp_common_create(sqlite3 *handle, pthread_mutex_t *mutex,
 		}
 	} else { // use id setted by client, after checking.
 		pthread_mutex_lock(mutex);
-		int check_id = bp_db_get_int_column(handle, id, table,
+		long long int check_id = bp_db_get_int_column(handle, id, table,
 				BP_DB_COMMON_COL_ID, &errorcode);
 		pthread_mutex_unlock(mutex);
 		if (check_id < 0 && errorcode != BP_ERROR_ID_NOT_FOUND) {
@@ -223,13 +224,15 @@ bp_error_defs bp_common_create(sqlite3 *handle, pthread_mutex_t *mutex,
 	pthread_mutex_unlock(mutex);
 	TRACE_SECURE_DEBUG("[CREATE] [%d]", id);
 	bp_ipc_send_errorcode(sock, errorcode);
-	if (errorcode == BP_ERROR_NONE)
-		bp_ipc_send_custom_type(sock, &id, sizeof(int));
+	if (errorcode == BP_ERROR_NONE) {
+		TRACE_INFO("bp_common_create");
+		bp_ipc_send_custom_type(sock, &id, sizeof(long long int));
+	}
 	return errorcode;
 }
 
 bp_error_defs bp_common_delete(sqlite3 *handle, pthread_mutex_t *mutex,
-	char *table, int sock, int id)
+	char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -245,7 +248,7 @@ bp_error_defs bp_common_delete(sqlite3 *handle, pthread_mutex_t *mutex,
 }
 
 bp_error_defs bp_common_set_is_deleted(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id)
+	pthread_mutex_t *mutex, char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -403,7 +406,7 @@ bp_error_defs bp_common_clear_deleted_ids(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_set_tag(sqlite3 *handle, pthread_mutex_t *mutex,
-	char *table, int sock, int id)
+	char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -463,7 +466,7 @@ bp_error_defs bp_common_set_tag(sqlite3 *handle, pthread_mutex_t *mutex,
 }
 
 bp_error_defs bp_common_unset_tag(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id)
+	pthread_mutex_t *mutex, char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -493,7 +496,7 @@ bp_error_defs bp_common_unset_tag(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_get_tag(sqlite3 *handle, pthread_mutex_t *mutex,
-	char *table, int sock, int id)
+	char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -527,7 +530,7 @@ bp_error_defs bp_common_get_tag(sqlite3 *handle, pthread_mutex_t *mutex,
 
 
 bp_error_defs bp_common_get_tag_ids(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id)
+	pthread_mutex_t *mutex, char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -571,7 +574,7 @@ bp_error_defs bp_common_get_tag_ids(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_set_blob(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -633,7 +636,7 @@ bp_error_defs bp_common_set_blob(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_set_blob_with_size(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id)
+	pthread_mutex_t *mutex, char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -719,7 +722,7 @@ bp_error_defs bp_common_set_blob_with_size(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_get_blob(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -785,7 +788,7 @@ int bp_common_shm_get_bytes(sqlite3 *handle, char *table, int sock,
 }
 
 void bp_common_get_info_send_blob(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id,
+	pthread_mutex_t *mutex, char *table, int sock, long long int id,
 	bp_shm_defs *shm)
 {
 	bp_error_defs errorcode = BP_ERROR_NONE;
@@ -812,7 +815,7 @@ void bp_common_get_info_send_blob(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_get_blob_shm(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id, bp_shm_defs *shm)
+	pthread_mutex_t *mutex, char *table, int sock, long long int id, bp_shm_defs *shm)
 {
 	BP_PRE_CHECK;
 
@@ -859,7 +862,7 @@ bp_error_defs bp_common_get_blob_shm(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_set_blob_shm(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id,
+	pthread_mutex_t *mutex, char *table, int sock, long long int id,
 	bp_shm_defs *shm)
 {
 	BP_PRE_CHECK;
@@ -963,7 +966,7 @@ bp_error_defs bp_common_set_blob_shm(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_get_blob_with_size(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, int sock, int id)
+	pthread_mutex_t *mutex, char *table, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1000,7 +1003,7 @@ bp_error_defs bp_common_get_blob_with_size(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_get_blob_int(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1018,7 +1021,7 @@ bp_error_defs bp_common_get_blob_int(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_get_int(sqlite3 *handle, pthread_mutex_t *mutex,
-	char *table, char *column, int sock, int id)
+	char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1034,7 +1037,7 @@ bp_error_defs bp_common_get_int(sqlite3 *handle, pthread_mutex_t *mutex,
 }
 
 bp_error_defs bp_common_set_int(sqlite3 *handle, pthread_mutex_t *mutex,
-	char *table, char *column, int sock, int id)
+	char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1060,7 +1063,7 @@ bp_error_defs bp_common_set_int(sqlite3 *handle, pthread_mutex_t *mutex,
 }
 
 bp_error_defs bp_common_get_string(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1078,7 +1081,7 @@ bp_error_defs bp_common_get_string(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_set_string(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1106,7 +1109,7 @@ bp_error_defs bp_common_set_string(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_set_date(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1129,7 +1132,7 @@ bp_error_defs bp_common_set_date(sqlite3 *handle,
 }
 
 bp_error_defs bp_common_replace_int(sqlite3 *handle,
-	pthread_mutex_t *mutex, char *table, char *column, int sock, int id)
+	pthread_mutex_t *mutex, char *table, char *column, int sock, long long int id)
 {
 	BP_PRE_CHECK;
 

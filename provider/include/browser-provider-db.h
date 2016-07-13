@@ -48,9 +48,9 @@ sqlite3_stmt *bp_db_prepare_basic_get_info_stmt(sqlite3 *handle,
 int bp_db_bind_value(sqlite3_stmt *stmt, bp_column_data_defs condtype,
 	void *value, int index);
 // if timestamp <= 0, basically apply now
-int bp_db_set_datetime(sqlite3 *handle, int id, char *table,
+int bp_db_set_datetime(sqlite3 *handle, long long int id, char *table,
 	char *column, int timestamp, bp_error_defs *error);
-int bp_db_set_increase_int(sqlite3 *handle, int id, char *table,
+int bp_db_set_increase_int(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error);
 int bp_db_limit_rows(sqlite3 *handle, char *table, int limit_size,
 	char *ordercolumn, char *ordering, bp_error_defs *error);
@@ -67,42 +67,42 @@ int bp_db_get_custom_conds_ids(sqlite3 *handle,
 	char *table, int *ids, char *getcolumn, int rowslimit, int rowsoffset,
 	char *ordercolumn, char *ordering,
 	char *condition, bp_error_defs *error);
-int bp_db_insert_column(sqlite3 *handle, int id, char *table,
+int bp_db_insert_column(sqlite3 *handle, long long int id, char *table,
 	char *date_column, bp_error_defs *error);
 int bp_db_insert3_column(sqlite3 *handle, char *table, char *column,
 	bp_column_data_defs datatype, void *value, char *column2,
 	bp_column_data_defs datatype2, void *value2, char *column3,
 	bp_column_data_defs datatype3, void *value3, bp_error_defs *error);
-int bp_db_set_column(sqlite3 *handle, int id, char *table, char *column,
+int bp_db_set_column(sqlite3 *handle, long long int id, char *table, char *column,
 	bp_column_data_defs datatype, void *value, bp_error_defs *error);
 int bp_db_set_cond2_column(sqlite3 *handle, char *table, char *column,
 	bp_column_data_defs datatype, void *value,
 	char *condcolumn, bp_column_data_defs condtype, void *condvalue,
 	char *condcolumn2, bp_column_data_defs condtype2,
 	void *condvalue2, bp_error_defs *error);
-int bp_db_set_columns(sqlite3 *handle, int id, char *table,
+int bp_db_set_columns(sqlite3 *handle, long long int id, char *table,
 	int columns_count, bp_db_conds_list_fmt *columns,
 	bp_error_defs *error);
-char *bp_db_get_text_column(sqlite3 *handle, int id, char *table,
+char *bp_db_get_text_column(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error);
 char *bp_db_get_cond2_text_column(sqlite3 *handle, char *table,
 	char *column, char *condcolumn, bp_column_data_defs condtype,
 	void *condvalue, char *condcolumn2, bp_column_data_defs condtype2,
 	void *condvalue2, bp_error_defs *error);
-int bp_db_set_blob_column(sqlite3 *handle, int id, char *table,
+int bp_db_set_blob_column(sqlite3 *handle, long long int id, char *table,
 	char *column, int length, unsigned char *value,
 	bp_error_defs *error);
-sqlite3_stmt *bp_db_get_blob_stmt(sqlite3 *handle, int id, char *table,
+sqlite3_stmt *bp_db_get_blob_stmt(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error);
-int bp_db_get_blob_column(sqlite3 *handle, int id, char *table,
+int bp_db_get_blob_column(sqlite3 *handle, long long int id, char *table,
 	char *column, unsigned char **data, bp_error_defs *error);
-int bp_db_get_int_column(sqlite3 *handle, int id, char *table,
+int bp_db_get_int_column(sqlite3 *handle, long long int id, char *table,
 	char *column, bp_error_defs *error);
 int bp_db_get_cond2_int_column(sqlite3 *handle, char *table,
 	char *column, char *condcolumn, bp_column_data_defs condtype,
 	void *condvalue, char *condcolumn2, bp_column_data_defs condtype2,
 	void *condvalue2, bp_error_defs *error);
-int bp_db_get_columns(sqlite3 *handle, int id, char *table,
+int bp_db_get_columns(sqlite3 *handle, long long int id, char *table,
 	int columns_count, bp_db_get_columns_fmt *columns,
 	bp_error_defs *error);
 void bp_db_free_columns_fmt_values(int columns_count,

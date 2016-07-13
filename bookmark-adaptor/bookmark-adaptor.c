@@ -131,7 +131,7 @@ static int __bp_bookmark_adaptor_get_ids_p(int id, int **ids,
 	return 0;
 }
 
-static int __bp_bookmark_adaptor_get_string(const int id,
+static int __bp_bookmark_adaptor_get_string(const long long int id,
 	bp_command_defs cmd, char **value)
 {
 	if (id < 0 || value == NULL)
@@ -149,7 +149,7 @@ static int __bp_bookmark_adaptor_get_string(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_get_int(const int id,
+static int __bp_bookmark_adaptor_get_int(const long long int id,
 	bp_command_defs cmd, int *value)
 {
 	if (id < 0 || value == NULL)
@@ -167,7 +167,7 @@ static int __bp_bookmark_adaptor_get_int(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_set_string(const int id,
+static int __bp_bookmark_adaptor_set_string(const long long int id,
 	bp_command_defs cmd, const char *value)
 {
 	// allow negative for backup.restore
@@ -186,7 +186,7 @@ static int __bp_bookmark_adaptor_set_string(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_set_int(const int id,
+static int __bp_bookmark_adaptor_set_int(const long long int id,
 	bp_command_defs cmd, const int value)
 {
 	if (id < 0)
@@ -204,7 +204,7 @@ static int __bp_bookmark_adaptor_set_int(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_send_cmd(const int id, bp_command_defs cmd)
+static int __bp_bookmark_adaptor_send_cmd(const long long int id, bp_command_defs cmd)
 {
 	BP_CHECK_PROVIDER_STATUS;
 
@@ -222,7 +222,7 @@ static int __bp_bookmark_adaptor_send_cmd(const int id, bp_command_defs cmd)
 	return 0;
 }
 
-static int __bp_bookmark_adaptor_send_one_way(const int id, bp_command_defs cmd)
+static int __bp_bookmark_adaptor_send_one_way(const long long int id, bp_command_defs cmd)
 {
 	BP_CHECK_PROVIDER_STATUS;
 
@@ -361,7 +361,7 @@ int bp_bookmark_adaptor_is_setted_data_changed_cb(void)
 	return 0;
 }
 
-int bp_bookmark_adaptor_set_dirty(const int id)
+int bp_bookmark_adaptor_set_dirty(const long long int id)
 {
 	if (id < 0)
 		return -1;
@@ -406,7 +406,7 @@ int bp_bookmark_adaptor_create(int *id)
 		pthread_mutex_unlock(&g_adaptor_mutex);
 		return -1;
 	}
-	bookmark_id = bp_adaptor_ipc_read_int(sock);
+	bookmark_id = bp_adaptor_ipc_read_int64(sock);
 	if (bookmark_id < 0) {
 		errorcode = bp_ipc_check_stderr(BP_ERROR_IO_ERROR);
 		BP_PRINT_ERROR(*id, errorcode);
@@ -425,7 +425,7 @@ int bp_bookmark_adaptor_create(int *id)
 	return 0;
 }
 
-int bp_bookmark_adaptor_delete(const int id)
+int bp_bookmark_adaptor_delete(const long long int id)
 {
 	if (id < 0) {
 		TRACE_ERROR("[CHECK id][%d]", id);
@@ -467,183 +467,183 @@ int bp_bookmark_adaptor_get_errorcode(void)
 	return BP_BOOKMARK_ERROR_NONE;
 }
 
-int bp_bookmark_adaptor_get_type(const int id, int *value)
+int bp_bookmark_adaptor_get_type(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_BOOKMARK_GET_TYPE, value);
 }
 
-int bp_bookmark_adaptor_get_parent_id(const int id, int *value)
+int bp_bookmark_adaptor_get_parent_id(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_BOOKMARK_GET_PARENT, value);
 }
 
-int bp_bookmark_adaptor_get_url(const int id, char **value)
+int bp_bookmark_adaptor_get_url(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_URL, value);
 }
 
-int bp_bookmark_adaptor_get_title(const int id, char **value)
+int bp_bookmark_adaptor_get_title(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_TITLE, value);
 }
 
-int bp_bookmark_adaptor_get_sequence(const int id, int *value)
+int bp_bookmark_adaptor_get_sequence(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_BOOKMARK_GET_SEQUENCE, value);
 }
 
-int bp_bookmark_adaptor_get_is_editable(const int id, int *value)
+int bp_bookmark_adaptor_get_is_editable(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_BOOKMARK_GET_IS_EDITABLE, value);
 }
 
-int bp_bookmark_adaptor_get_is_operator(const int id, int *value)
+int bp_bookmark_adaptor_get_is_operator(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_BOOKMARK_GET_IS_OPERATOR, value);
 }
 
-int bp_bookmark_adaptor_get_access_count(const int id, int *value)
+int bp_bookmark_adaptor_get_access_count(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_BOOKMARK_GET_ACCESS_COUNT, value);
 }
 
-int bp_bookmark_adaptor_get_date_created(const int id, int *value)
+int bp_bookmark_adaptor_get_date_created(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_CREATED, value);
 }
 
-int bp_bookmark_adaptor_get_date_modified(const int id, int *value)
+int bp_bookmark_adaptor_get_date_modified(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_MODIFIED, value);
 }
 
-int bp_bookmark_adaptor_get_date_visited(const int id, int *value)
+int bp_bookmark_adaptor_get_date_visited(const long long int id, int *value)
 {
 	return __bp_bookmark_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_VISITED, value);
 }
 
-int bp_bookmark_adaptor_get_account_name(const int id, char **value)
+int bp_bookmark_adaptor_get_account_name(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_ACCOUNT_NAME, value);
 }
 
-int bp_bookmark_adaptor_get_account_type(const int id, char **value)
+int bp_bookmark_adaptor_get_account_type(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_ACCOUNT_TYPE, value);
 }
 
-int bp_bookmark_adaptor_get_device_name(const int id, char **value)
+int bp_bookmark_adaptor_get_device_name(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_DEVICE_NAME, value);
 }
 
-int bp_bookmark_adaptor_get_device_id(const int id, char **value)
+int bp_bookmark_adaptor_get_device_id(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_DEVICE_ID, value);
 }
 
-int bp_bookmark_adaptor_get_sync(const int id, char **value)
+int bp_bookmark_adaptor_get_sync(const long long int id, char **value)
 {
 	return __bp_bookmark_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_SYNC, value);
 }
 
-int bp_bookmark_adaptor_set_type(const int id, const int value)
+int bp_bookmark_adaptor_set_type(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_BOOKMARK_SET_TYPE, value);
 }
 
-int bp_bookmark_adaptor_set_parent_id(const int id, const int value)
+int bp_bookmark_adaptor_set_parent_id(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_BOOKMARK_SET_PARENT, value);
 }
 
-int bp_bookmark_adaptor_set_url(const int id, const char *value)
+int bp_bookmark_adaptor_set_url(const long long int id, const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_URL, value);
 }
 
-int bp_bookmark_adaptor_set_title(const int id, const char *value)
+int bp_bookmark_adaptor_set_title(const long long int id, const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_TITLE, value);
 }
 
-int bp_bookmark_adaptor_set_sequence(const int id, const int value)
+int bp_bookmark_adaptor_set_sequence(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_BOOKMARK_SET_SEQUENCE, value);
 }
 
-int bp_bookmark_adaptor_set_access_count(const int id, const int value)
+int bp_bookmark_adaptor_set_access_count(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_BOOKMARK_SET_ACCESS_COUNT, value);
 }
 
-int bp_bookmark_adaptor_set_date_created(const int id, const int value)
+int bp_bookmark_adaptor_set_date_created(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_CREATED, value);
 }
 
-int bp_bookmark_adaptor_set_date_modified(const int id, const int value)
+int bp_bookmark_adaptor_set_date_modified(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_MODIFIED, value);
 }
 
-int bp_bookmark_adaptor_set_date_visited(const int id, const int value)
+int bp_bookmark_adaptor_set_date_visited(const long long int id, const int value)
 {
 	return __bp_bookmark_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_VISITED, value);
 }
 
-int bp_bookmark_adaptor_set_account_name(const int id,
+int bp_bookmark_adaptor_set_account_name(const long long int id,
 	const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_ACCOUNT_NAME, value);
 }
 
-int bp_bookmark_adaptor_set_account_type(const int id,
+int bp_bookmark_adaptor_set_account_type(const long long int id,
 	const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_ACCOUNT_TYPE, value);
 }
 
-int bp_bookmark_adaptor_set_device_name(const int id, const char *value)
+int bp_bookmark_adaptor_set_device_name(const long long int id, const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_DEVICE_NAME, value);
 }
 
-int bp_bookmark_adaptor_set_device_id(const int id, const char *value)
+int bp_bookmark_adaptor_set_device_id(const long long int id, const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_DEVICE_ID, value);
 }
 
-int bp_bookmark_adaptor_set_sync(const int id, const char *value)
+int bp_bookmark_adaptor_set_sync(const long long int id, const char *value)
 {
 	return __bp_bookmark_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_SYNC, value);
@@ -749,7 +749,7 @@ int bp_bookmark_adaptor_get_easy_all(int id, bp_bookmark_info_fmt *info)
 	return bp_bookmark_adaptor_get_info(id, BP_BOOKMARK_O_ALL, info);
 }
 
-int bp_bookmark_adaptor_get_info(const int id,
+int bp_bookmark_adaptor_get_info(const long long int id,
 	const bp_bookmark_offset offset, bp_bookmark_info_fmt *info)
 {
 	if (id < 0 || offset <= 0 || info == NULL)
@@ -1318,7 +1318,7 @@ int bp_bookmark_adaptor_get_raw_retrieved_ids_p
 
 // removing an item without corresponding sub items. remain this code just for reference.
 /*
-int bp_bookmark_adaptor_remove(const int id, const int remove_flag)
+int bp_bookmark_adaptor_remove(const long long int id, const int remove_flag)
 {
 	// workaround API for WEBAPI TC(favorite api)
 	if (remove_flag < 0) {

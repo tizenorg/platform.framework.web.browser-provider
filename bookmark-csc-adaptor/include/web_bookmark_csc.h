@@ -124,7 +124,7 @@ EXPORT_API int bookmark_csc_create(int *id, bookmark_csc_info_fmt *info);
  * @param[in] id Id of an item
  * @return 0 on success, otherwise, -1 is returned and error code is set to indicate the error
  */
-EXPORT_API int bookmark_csc_delete(const int id);
+EXPORT_API int bookmark_csc_delete(const long long int id);
 
 
 /**
@@ -159,7 +159,7 @@ EXPORT_API int bookmark_csc_get_ids_p(int parent, int **ids, int *count);
  * @return 0 on success, otherwise, -1 is returned and error code is set to indicate the error
  * @see bookmark_csc_info_fmt
  */
-EXPORT_API int bookmark_csc_get_info(const int id, bookmark_csc_info_fmt *info);
+EXPORT_API int bookmark_csc_get_info(const long long int id, bookmark_csc_info_fmt *info);
 
 
 /**

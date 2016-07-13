@@ -812,7 +812,7 @@ static bp_error_defs __bp_bookmark_set_max_sequence(int id)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_set_sequence(int sock, int id)
+static bp_error_defs __bp_bookmark_set_sequence(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -839,7 +839,7 @@ static bp_error_defs __bp_bookmark_set_sequence(int sock, int id)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_set_easy_all(int sock, int id, int ctype)
+static bp_error_defs __bp_bookmark_set_easy_all(int sock, long long int id, int ctype)
 {
 	BP_PRE_CHECK;
 
@@ -942,7 +942,7 @@ static bp_error_defs __bp_bookmark_set_easy_all(int sock, int id, int ctype)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_get_info_offset(int sock, int id, bp_shm_defs *shm)
+static bp_error_defs __bp_bookmark_get_info_offset(int sock, long long int id, bp_shm_defs *shm)
 {
 	BP_PRE_CHECK;
 
@@ -1219,7 +1219,7 @@ static bp_error_defs __bp_bookmark_get_info_offset(int sock, int id, bp_shm_defs
 }
 
 
-static bp_error_defs __bp_bookmark_csc_set_all(int sock, int id)
+static bp_error_defs __bp_bookmark_csc_set_all(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1309,7 +1309,7 @@ static bp_error_defs __bp_bookmark_csc_set_all(int sock, int id)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_csc_get_all(int sock, int id)
+static bp_error_defs __bp_bookmark_csc_get_all(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1441,7 +1441,7 @@ static bp_error_defs __bp_bookmark_reset(int sock)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_set_is_deleted(int sock, int id)
+static bp_error_defs __bp_bookmark_set_is_deleted(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1473,7 +1473,7 @@ static bp_error_defs __bp_bookmark_set_is_deleted(int sock, int id)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_delete(int sock, int id)
+static bp_error_defs __bp_bookmark_delete(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1501,7 +1501,7 @@ static bp_error_defs __bp_bookmark_delete(int sock, int id)
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_set_is_deleted_no_care_child(int sock, int id)
+static bp_error_defs __bp_bookmark_set_is_deleted_no_care_child(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1522,7 +1522,7 @@ static bp_error_defs __bp_bookmark_set_is_deleted_no_care_child(int sock, int id
 	return errorcode;
 }
 
-static bp_error_defs __bp_bookmark_delete_no_care_child(int sock, int id)
+static bp_error_defs __bp_bookmark_delete_no_care_child(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -1658,8 +1658,8 @@ bp_error_defs bp_bookmark_handle_requests(bp_client_slots_defs *slots,
 {
 	bp_command_defs cmd = BP_CMD_NONE;
 	bp_error_defs errorcode = BP_ERROR_NONE;
-	int id = 0;
-	int cid = 0;
+	long long int id = 0;
+	long long int cid = 0;
 	int sock = -1;
 
 	if (slots == NULL) {

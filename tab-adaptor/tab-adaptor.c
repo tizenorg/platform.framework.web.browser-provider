@@ -129,7 +129,7 @@ static int __bp_tab_adaptor_get_ids_p
 }
 
 static int __bp_tab_adaptor_get_string
-	(const int id, bp_command_defs cmd, char **value)
+	(const long long int id, bp_command_defs cmd, char **value)
 {
 	if (id < 0 || value == NULL)
 		return -1;
@@ -147,7 +147,7 @@ static int __bp_tab_adaptor_get_string
 }
 
 static int __bp_tab_adaptor_get_int
-	(const int id, bp_command_defs cmd, int *value)
+	(const long long int id, bp_command_defs cmd, int *value)
 {
 	if (id < 0 || value == NULL)
 		return -1;
@@ -165,7 +165,7 @@ static int __bp_tab_adaptor_get_int
 }
 
 static int __bp_tab_adaptor_set_string
-	(const int id, bp_command_defs cmd, const char *value)
+	(const long long int id, bp_command_defs cmd, const char *value)
 {
 	if (id < 0 || value == NULL || bp_common_precheck_string(value) < 0)
 		return -1;
@@ -183,7 +183,7 @@ static int __bp_tab_adaptor_set_string
 }
 
 static int __bp_tab_adaptor_set_int
-	(const int id, bp_command_defs cmd, const int value)
+	(const long long int id, bp_command_defs cmd, const int value)
 {
 	if (id < 0) {
 		TRACE_ERROR("[CHECK id][%d]", id);
@@ -202,7 +202,7 @@ static int __bp_tab_adaptor_set_int
 	return ret;
 }
 
-static int __bp_tab_adaptor_send_cmd(const int id, bp_command_defs cmd)
+static int __bp_tab_adaptor_send_cmd(const long long int id, bp_command_defs cmd)
 {
 	BP_CHECK_PROVIDER_STATUS;
 
@@ -221,7 +221,7 @@ static int __bp_tab_adaptor_send_cmd(const int id, bp_command_defs cmd)
 	return 0;
 }
 
-static int __bp_tab_adaptor_send_one_way(const int id, bp_command_defs cmd)
+static int __bp_tab_adaptor_send_one_way(const long long int id, bp_command_defs cmd)
 {
 	BP_CHECK_PROVIDER_STATUS;
 
@@ -233,7 +233,7 @@ static int __bp_tab_adaptor_send_one_way(const int id, bp_command_defs cmd)
 	return ret;
 }
 
-static int __bp_tab_adaptor_get_blob_shm(const int id,
+static int __bp_tab_adaptor_get_blob_shm(const long long int id,
 	bp_command_defs cmd, int *width, int *height, unsigned char **value,
 	int *length)
 {
@@ -253,7 +253,7 @@ static int __bp_tab_adaptor_get_blob_shm(const int id,
 	return ret;
 }
 
-static int __bp_tab_adaptor_set_blob_shm(const int id,
+static int __bp_tab_adaptor_set_blob_shm(const long long int id,
 	bp_command_defs cmd, const int width, const int height,
 	const unsigned char *value, const int length)
 {
@@ -386,14 +386,14 @@ int bp_tab_adaptor_is_setted_data_changed_cb(void)
 	return 0;
 }
 
-int bp_tab_adaptor_set_dirty(const int id)
+int bp_tab_adaptor_set_dirty(const long long int id)
 {
 	if (id < 0)
 		return -1;
 	return __bp_tab_adaptor_send_one_way(id, BP_CMD_COMMON_SET_DIRTY);
 }
 
-int bp_tab_adaptor_set_deleted(const int id)
+int bp_tab_adaptor_set_deleted(const long long int id)
 {
 	if (id < 0)
 		return -1;
@@ -405,30 +405,30 @@ int bp_tab_adaptor_publish_notification(void)
 	return __bp_tab_adaptor_send_one_way(-1, BP_CMD_COMMON_NOTI);
 }
 
-int bp_tab_adaptor_get_index(const int id, int *value)
+int bp_tab_adaptor_get_index(const long long int id, int *value)
 {
 	return __bp_tab_adaptor_get_int(id, BP_CMD_TABS_GET_INDEX, value);
 }
 
-int bp_tab_adaptor_get_url(const int id, char **value)
+int bp_tab_adaptor_get_url(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string(id, BP_CMD_COMMON_GET_URL, value);
 }
 
-int bp_tab_adaptor_get_title(const int id, char **value)
+int bp_tab_adaptor_get_title(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string(id, BP_CMD_COMMON_GET_TITLE, value);
 }
 
 // blob
-int bp_tab_adaptor_get_icon(const int id, int *width,
+int bp_tab_adaptor_get_icon(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_tab_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_ICON, width, height, value, length);
 }
 
-int bp_tab_adaptor_get_icon_png(const int id,
+int bp_tab_adaptor_get_icon_png(const long long int id,
 	unsigned char **value, int *length)
 {
 	unsigned char *raw_data = NULL;
@@ -444,99 +444,99 @@ int bp_tab_adaptor_get_icon_png(const int id,
 	return ret;
 }
 
-int bp_tab_adaptor_get_snapshot(const int id, int *width,
+int bp_tab_adaptor_get_snapshot(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_tab_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_SNAPSHOT, width, height, value, length);
 }
 
-int bp_tab_adaptor_get_activated(const int id, int *value)
+int bp_tab_adaptor_get_activated(const long long int id, int *value)
 {
 	return __bp_tab_adaptor_get_int(id, BP_CMD_TABS_GET_ACTIVATED, value);
 }
 
-int bp_tab_adaptor_get_incognito(const int id, int *value)
+int bp_tab_adaptor_get_incognito(const long long int id, int *value)
 {
 	return __bp_tab_adaptor_get_int(id, BP_CMD_TABS_GET_INCOGNITO, value);
 }
 
-int bp_tab_adaptor_get_browser_instance(const int id, int *value)
+int bp_tab_adaptor_get_browser_instance(const long long int id, int *value)
 {
 	return __bp_tab_adaptor_get_int(id, BP_CMD_TABS_GET_INCOGNITO, value);
 }
 
-int bp_tab_adaptor_get_date_created(const int id, int *value)
+int bp_tab_adaptor_get_date_created(const long long int id, int *value)
 {
 	return __bp_tab_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_CREATED, value);
 }
 
-int bp_tab_adaptor_get_date_modified(const int id, int *value)
+int bp_tab_adaptor_get_date_modified(const long long int id, int *value)
 {
 	return __bp_tab_adaptor_get_int
 		(id, BP_CMD_COMMON_GET_DATE_MODIFIED, value);
 }
 
-int bp_tab_adaptor_get_account_name(const int id, char **value)
+int bp_tab_adaptor_get_account_name(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_ACCOUNT_NAME, value);
 }
 
-int bp_tab_adaptor_get_account_type(const int id, char **value)
+int bp_tab_adaptor_get_account_type(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_ACCOUNT_TYPE, value);
 }
 
-int bp_tab_adaptor_get_device_name(const int id, char **value)
+int bp_tab_adaptor_get_device_name(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_DEVICE_NAME, value);
 }
 
-int bp_tab_adaptor_get_device_id(const int id, char **value)
+int bp_tab_adaptor_get_device_id(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_DEVICE_ID, value);
 }
 
-int bp_tab_adaptor_get_usage(const int id, char **value)
+int bp_tab_adaptor_get_usage(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string
 		(id, BP_CMD_TABS_GET_USAGE, value);
 }
 
-int bp_tab_adaptor_get_sync(const int id, char **value)
+int bp_tab_adaptor_get_sync(const long long int id, char **value)
 {
 	return __bp_tab_adaptor_get_string
 		(id, BP_CMD_COMMON_GET_SYNC, value);
 }
 
-int bp_tab_adaptor_set_index(const int id, const int value)
+int bp_tab_adaptor_set_index(const long long int id, const int value)
 {
 	return __bp_tab_adaptor_set_int(id, BP_CMD_TABS_SET_INDEX, value);
 }
 
-int bp_tab_adaptor_set_url(const int id, const char *value)
+int bp_tab_adaptor_set_url(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string(id, BP_CMD_COMMON_SET_URL, value);
 }
 
-int bp_tab_adaptor_set_title(const int id, const char *value)
+int bp_tab_adaptor_set_title(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string(id, BP_CMD_COMMON_SET_TITLE, value);
 }
 
-int bp_tab_adaptor_set_icon(const int id, const int width,
+int bp_tab_adaptor_set_icon(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_tab_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_ICON, width, height, value, length);
 }
 
-int bp_tab_adaptor_set_icon_png(const int id,
+int bp_tab_adaptor_set_icon_png(const long long int id,
 	const unsigned char *value)
 {
 	if (value == NULL)
@@ -554,80 +554,80 @@ int bp_tab_adaptor_set_icon_png(const int id,
 	return ret;
 }
 
-int bp_tab_adaptor_set_snapshot(const int id, const int width,
+int bp_tab_adaptor_set_snapshot(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_tab_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_SNAPSHOT, width, height, value, length);
 }
 
-int bp_tab_adaptor_set_activated(const int id, const int value)
+int bp_tab_adaptor_set_activated(const long long int id, const int value)
 {
 	return __bp_tab_adaptor_set_int
 		(id, BP_CMD_TABS_SET_ACTIVATED, value);
 }
 
-int bp_tab_adaptor_set_incognito(const int id, const int value)
+int bp_tab_adaptor_set_incognito(const long long int id, const int value)
 {
 	return __bp_tab_adaptor_set_int
 		(id, BP_CMD_TABS_SET_INCOGNITO, value);
 }
 
-int bp_tab_adaptor_set_browser_instance(const int id, const int value)
+int bp_tab_adaptor_set_browser_instance(const long long int id, const int value)
 {
 	return __bp_tab_adaptor_set_int
 		(id, BP_CMD_TABS_SET_BROWSER_INSTANCE, value);
 }
 
-int bp_tab_adaptor_set_date_created(const int id, const int value)
+int bp_tab_adaptor_set_date_created(const long long int id, const int value)
 {
 	return __bp_tab_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_CREATED, value);
 }
 
-int bp_tab_adaptor_set_date_modified(const int id, const int value)
+int bp_tab_adaptor_set_date_modified(const long long int id, const int value)
 {
 	return __bp_tab_adaptor_set_int
 		(id, BP_CMD_COMMON_SET_DATE_MODIFIED, value);
 }
 
-int bp_tab_adaptor_set_account_name(const int id, const char *value)
+int bp_tab_adaptor_set_account_name(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_ACCOUNT_NAME, value);
 }
 
-int bp_tab_adaptor_set_account_type(const int id, const char *value)
+int bp_tab_adaptor_set_account_type(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_ACCOUNT_TYPE, value);
 }
 
-int bp_tab_adaptor_set_device_name(const int id, const char *value)
+int bp_tab_adaptor_set_device_name(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_DEVICE_NAME, value);
 }
 
-int bp_tab_adaptor_set_device_id(const int id, const char *value)
+int bp_tab_adaptor_set_device_id(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string
 		(id, BP_CMD_COMMON_SET_DEVICE_ID, value);
 }
 
-int bp_tab_adaptor_set_usage(const int id, const char *value)
+int bp_tab_adaptor_set_usage(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string(id, BP_CMD_TABS_SET_USAGE, value);
 }
 
-int bp_tab_adaptor_set_sync(const int id, const char *value)
+int bp_tab_adaptor_set_sync(const long long int id, const char *value)
 {
 	return __bp_tab_adaptor_set_string(id, BP_CMD_COMMON_SET_SYNC, value);
 }
 
-int bp_tab_adaptor_create(int *id)
+int bp_tab_adaptor_create(long long int *id)
 {
-	int tab_id = 0;
+	long long int tab_id = 0;
 
 	if (id == NULL)
 		return -1;
@@ -649,7 +649,8 @@ int bp_tab_adaptor_create(int *id)
 		pthread_mutex_unlock(&g_adaptor_mutex);
 		return -1;
 	}
-	tab_id = bp_adaptor_ipc_read_int(sock);
+	tab_id = bp_adaptor_ipc_read_int64(sock);
+	TRACE_INFO("tab_id:%lld", tab_id);
 	if (tab_id < 0) {
 		errorcode = bp_ipc_check_stderr(BP_ERROR_IO_ERROR);
 		BP_PRINT_ERROR(*id, errorcode);
@@ -660,15 +661,15 @@ int bp_tab_adaptor_create(int *id)
 	}
 	pthread_mutex_unlock(&g_adaptor_mutex);
 	if (*id == tab_id) {
-		TRACE_INFO("created a tab:%d", *id);
+		TRACE_INFO("created a tab:%lld", *id);
 	} else {
 		*id = tab_id;
-		TRACE_INFO("created new tab:%d", *id);
+		TRACE_INFO("created new tab:%lld", *id);
 	}
 	return 0;
 }
 
-int bp_tab_adaptor_delete(const int id)
+int bp_tab_adaptor_delete(const long long int id)
 {
 	if (id < 0) {
 		TRACE_ERROR("[CHECK id][%d]", id);
@@ -710,7 +711,7 @@ int bp_tab_adaptor_get_errorcode(void)
 	return BP_TAB_ERROR_NONE;
 }
 
-int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info)
+int bp_tab_adaptor_easy_create(long long int *id, bp_tab_info_fmt *info)
 {
 	if (id == NULL || info == NULL)
 		return -1;
@@ -852,7 +853,7 @@ int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info)
 		pthread_mutex_unlock(&g_adaptor_mutex);
 		return -1;
 	}
-	int tab_id = bp_adaptor_ipc_read_int(sock);
+	int tab_id = bp_adaptor_ipc_read_int64(sock);
 	if (tab_id < 0) {
 		errorcode = bp_ipc_check_stderr(BP_ERROR_IO_ERROR);
 		BP_PRINT_ERROR(*id, errorcode);
@@ -863,10 +864,10 @@ int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info)
 	}
 	pthread_mutex_unlock(&g_adaptor_mutex);
 	if (*id == tab_id) {
-		TRACE_INFO("updated a tab:%d", *id);
+		TRACE_INFO("updated a tab:%lld", *id);
 	} else {
 		*id = tab_id;
-		TRACE_INFO("created new tab:%d", *id);
+		TRACE_INFO("created new tab:%lld", *id);
 	}
 
 	if (info->favicon_length > 0 && info->favicon != NULL) {
@@ -880,12 +881,12 @@ int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info)
 	return 0;
 }
 
-int bp_tab_adaptor_get_easy_all(const int id, bp_tab_info_fmt *info)
+int bp_tab_adaptor_get_easy_all(const long long int id, bp_tab_info_fmt *info)
 {
 	return bp_tab_adaptor_get_info(id, BP_TAB_O_ALL, info);
 }
 
-int bp_tab_adaptor_get_info(const int id, const bp_tab_offset offset,
+int bp_tab_adaptor_get_info(const long long int id, const bp_tab_offset offset,
 	bp_tab_info_fmt *info)
 {
 	if (id < 0 || offset <= 0 || info == NULL)
@@ -1039,7 +1040,7 @@ int bp_tab_adaptor_easy_free(bp_tab_info_fmt *info)
 	return 0;
 }
 
-EXPORT_API int bp_tab_adaptor_activate(const int id)
+EXPORT_API int bp_tab_adaptor_activate(const long long int id)
 {
 	if (id < 0) {
 		TRACE_ERROR("[CHECK id][%d]", id);

@@ -313,6 +313,7 @@ static bp_error_defs __handle_client_request(bp_client_defs *client)
 	client_cmd.cid = 0;
 	client_cmd.id = 0;
 
+	TRACE_INFO(" at %s, line %d.", __FILE__, __LINE__);
 	if (bp_ipc_recv(client->cmd_socket, &client_cmd,
 			sizeof(bp_command_fmt), __FUNCTION__) <= 0)
 		errorcode = BP_ERROR_IO_ERROR;
@@ -474,10 +475,11 @@ void *client_thread_idle(void *arg)
 }
 #endif
 
-static int __get_client_id(bp_client_slots_defs *slots)
+static long long int __get_client_id(bp_client_slots_defs *slots)
 {
-	int cid = 0;
-	int checkid = 0;
+	TRACE_INFO("__get_client_id");
+	long long int cid = 0;
+	long long int checkid = 0;
 	int i = 0;
 
 	if (slots == NULL)
@@ -666,7 +668,7 @@ void bp_thread_requests_manager(bp_privates_defs *privates)
 					}
 				}
 				// allocation
-				int cid = __get_client_id(privates->slots);
+				long long int cid = __get_client_id(privates->slots);
 				privates->slots[i].client =
 					(bp_client_defs *)calloc(1,
 					sizeof(bp_client_defs));
@@ -821,7 +823,7 @@ void bp_thread_requests_manager(bp_privates_defs *privates)
 				// ok. ready to accept API of this client
 				bp_ipc_send_errorcode(clientfd, BP_ERROR_NONE);
 				bp_ipc_send_custom_type(clientfd,
-					&privates->slots[i].client->cid, sizeof(int));
+					&privates->slots[i].client->cid, sizeof(long long int));
 
 			}
 		} // New Connection

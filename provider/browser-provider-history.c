@@ -504,7 +504,7 @@ static bp_error_defs __bp_history_get_duplicated_ids(int sock)
 	return errorcode;
 }
 
-static bp_error_defs __bp_history_set_visit(int sock, int id)
+static bp_error_defs __bp_history_set_visit(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -571,7 +571,7 @@ static bp_error_defs __bp_history_set_limit_size(int sock)
 	return errorcode;
 }
 
-static bp_error_defs __bp_history_get_info_offset(int sock, int id, bp_shm_defs *shm)
+static bp_error_defs __bp_history_get_info_offset(int sock, long long int id, bp_shm_defs *shm)
 {
 	BP_PRE_CHECK;
 
@@ -737,7 +737,7 @@ static bp_error_defs __bp_history_reset(int sock)
 }
 
 /*
-static bp_error_defs __bp_history_set_is_deleted(int sock, int id)
+static bp_error_defs __bp_history_set_is_deleted(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -754,7 +754,7 @@ static bp_error_defs __bp_history_set_is_deleted(int sock, int id)
 }
 */
 
-static bp_error_defs __bp_history_delete(int sock, int id)
+static bp_error_defs __bp_history_delete(int sock, long long int id)
 {
 	BP_PRE_CHECK;
 
@@ -839,8 +839,8 @@ bp_error_defs bp_history_handle_requests(bp_client_slots_defs *slots,
 {
 	bp_command_defs cmd = BP_CMD_NONE;
 	bp_error_defs errorcode = BP_ERROR_NONE;
-	int id = 0;
-	int cid = 0;
+	long long int id = 0;
+	long long int cid = 0;
 	int sock = -1;
 
 	if (slots == NULL) {

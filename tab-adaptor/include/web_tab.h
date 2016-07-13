@@ -220,7 +220,7 @@ EXPORT_API int bp_tab_adaptor_is_setted_data_changed_cb(void);
  * @param[out] id The id of an item to mark
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_dirty(const int id);
+EXPORT_API int bp_tab_adaptor_set_dirty(const long long int id);
 
 
 /**
@@ -230,7 +230,7 @@ EXPORT_API int bp_tab_adaptor_set_dirty(const int id);
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  * @see bp_tab_adaptor_get_full_with_deleted_ids_p()
  */
-EXPORT_API int bp_tab_adaptor_set_deleted(const int id);
+EXPORT_API int bp_tab_adaptor_set_deleted(const long long int id);
 
 
 /**
@@ -305,7 +305,7 @@ EXPORT_API int bp_tab_adaptor_clear_deleted_ids(void);
  * @param[out] value The index of the tab
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_index(const int id, int *value);
+EXPORT_API int bp_tab_adaptor_get_index(const long long int id, int *value);
 
 
 /**
@@ -314,7 +314,7 @@ EXPORT_API int bp_tab_adaptor_get_index(const int id, int *value);
  * @param[out] value The url string
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_url(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_url(const long long int id, char **value);
 
 
 /**
@@ -323,7 +323,7 @@ EXPORT_API int bp_tab_adaptor_get_url(const int id, char **value);
  * @param[out] value The title string
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_title(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_title(const long long int id, char **value);
 
 
 /**
@@ -332,7 +332,7 @@ EXPORT_API int bp_tab_adaptor_get_title(const int id, char **value);
  * @param[out] value 0 means "activated", 1 means "deactivated"
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_activated(const int id, int *value);
+EXPORT_API int bp_tab_adaptor_get_activated(const long long int id, int *value);
 
 
 /**
@@ -341,7 +341,7 @@ EXPORT_API int bp_tab_adaptor_get_activated(const int id, int *value);
  * @param[out] value 1 means "incognito", 0 - the opposite
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_incognito(const int id, int *value);
+EXPORT_API int bp_tab_adaptor_get_incognito(const long long int id, int *value);
 
 /**
  * @brief Gets the "browser_instance" property of an item matched with the given id
@@ -349,7 +349,7 @@ EXPORT_API int bp_tab_adaptor_get_incognito(const int id, int *value);
  * @param[out] instance_id The browser instance ID starting from 0 (which is default)
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_browser_instance(const int id, int *instance_id);
+EXPORT_API int bp_tab_adaptor_get_browser_instance(const long long int id, int *instance_id);
 
 /**
  * @brief Gets the time when an item matched with the given id was made
@@ -357,7 +357,7 @@ EXPORT_API int bp_tab_adaptor_get_browser_instance(const int id, int *instance_i
  * @param[out] value The time stamp
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_date_created(const int id, int *value);
+EXPORT_API int bp_tab_adaptor_get_date_created(const long long int id, int *value);
 
 
 /**
@@ -366,7 +366,7 @@ EXPORT_API int bp_tab_adaptor_get_date_created(const int id, int *value);
  * @param[out] value The time stamp
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_date_modified(const int id, int *value);
+EXPORT_API int bp_tab_adaptor_get_date_modified(const long long int id, int *value);
 
 
 /**
@@ -376,7 +376,7 @@ EXPORT_API int bp_tab_adaptor_get_date_modified(const int id, int *value);
  * @param[out] value The account name
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_account_name(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_account_name(const long long int id, char **value);
 
 
 /**
@@ -386,7 +386,7 @@ EXPORT_API int bp_tab_adaptor_get_account_name(const int id, char **value);
  * @param[out] value The account type
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_account_type(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_account_type(const long long int id, char **value);
 
 
 /**
@@ -396,7 +396,7 @@ EXPORT_API int bp_tab_adaptor_get_account_type(const int id, char **value);
  * @param[out] value The device name
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_device_name(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_device_name(const long long int id, char **value);
 
 
 /**
@@ -406,7 +406,7 @@ EXPORT_API int bp_tab_adaptor_get_device_name(const int id, char **value);
  * @param[out] value The device id
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_device_id(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_device_id(const long long int id, char **value);
 
 
 /**
@@ -415,7 +415,7 @@ EXPORT_API int bp_tab_adaptor_get_device_id(const int id, char **value);
  * @param[out] value The value of the "usage" property
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_usage(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_usage(const long long int id, char **value);
 
 
 /**
@@ -424,7 +424,7 @@ EXPORT_API int bp_tab_adaptor_get_usage(const int id, char **value);
  * @param[in] value The value of the extra property for sync
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_sync(const int id, char **value);
+EXPORT_API int bp_tab_adaptor_get_sync(const long long int id, char **value);
 
 
 /**
@@ -441,7 +441,7 @@ EXPORT_API int bp_tab_adaptor_get_sync(const int id, char **value);
  * @param[out] length The size of the raw data
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_icon(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_tab_adaptor_get_icon(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -457,7 +457,7 @@ EXPORT_API int bp_tab_adaptor_get_icon(const int id, int *width, int *height, un
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  * @see bp_tab_adaptor_get_icon()
  */
-EXPORT_API int bp_tab_adaptor_get_icon_png(const int id, unsigned char **value, int *length);
+EXPORT_API int bp_tab_adaptor_get_icon_png(const long long int id, unsigned char **value, int *length);
 
 
 /**
@@ -474,7 +474,7 @@ EXPORT_API int bp_tab_adaptor_get_icon_png(const int id, unsigned char **value, 
  * @param[out] length The size of the raw data
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_get_snapshot(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_tab_adaptor_get_snapshot(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -483,7 +483,7 @@ EXPORT_API int bp_tab_adaptor_get_snapshot(const int id, int *width, int *height
  * @param[in] value The index to sort
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_index(const int id, const int value);
+EXPORT_API int bp_tab_adaptor_set_index(const long long int id, const int value);
 
 
 /**
@@ -492,7 +492,7 @@ EXPORT_API int bp_tab_adaptor_set_index(const int id, const int value);
  * @param[in] value The uri address
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_url(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_url(const long long int id, const char *value);
 
 
 /**
@@ -501,7 +501,7 @@ EXPORT_API int bp_tab_adaptor_set_url(const int id, const char *value);
  * @param[in] value The title
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_title(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_title(const long long int id, const char *value);
 
 
 /**
@@ -510,7 +510,7 @@ EXPORT_API int bp_tab_adaptor_set_title(const int id, const char *value);
  * @param[in] value 0 means "activated", otherwise 1 means "deactivated"
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_activated(const int id, const int value);
+EXPORT_API int bp_tab_adaptor_set_activated(const long long int id, const int value);
 
 
 /**
@@ -519,7 +519,7 @@ EXPORT_API int bp_tab_adaptor_set_activated(const int id, const int value);
  * @param[in] value 1 means "incognito", 0 - the opposite
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_incognito(const int id, const int value);
+EXPORT_API int bp_tab_adaptor_set_incognito(const long long int id, const int value);
 
 /**
  * @brief Sets the "browser_instance" property of an item matched with the given id
@@ -527,7 +527,7 @@ EXPORT_API int bp_tab_adaptor_set_incognito(const int id, const int value);
  * @param[in] instance_id The browser instance ID starting from 0 (which is default)
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_browser_instance(const int id, const int instance_id);
+EXPORT_API int bp_tab_adaptor_set_browser_instance(const long long int id, const int instance_id);
 
 /**
  * @brief Changes creation time of an item matched with the given id
@@ -535,7 +535,7 @@ EXPORT_API int bp_tab_adaptor_set_browser_instance(const int id, const int insta
  * @param[in] value The time stamp; if @c value <= 0 - update to present time automatically
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_date_created(const int id, const int value);
+EXPORT_API int bp_tab_adaptor_set_date_created(const long long int id, const int value);
 
 
 /**
@@ -544,7 +544,7 @@ EXPORT_API int bp_tab_adaptor_set_date_created(const int id, const int value);
  * @param[in] value The time stamp; if @c value <= 0 - update to present time automatically
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_date_modified(const int id, const int value);
+EXPORT_API int bp_tab_adaptor_set_date_modified(const long long int id, const int value);
 
 
 /**
@@ -553,7 +553,7 @@ EXPORT_API int bp_tab_adaptor_set_date_modified(const int id, const int value);
  * @param[in] value The account name
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_account_name(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_account_name(const long long int id, const char *value);
 
 
 /**
@@ -562,7 +562,7 @@ EXPORT_API int bp_tab_adaptor_set_account_name(const int id, const char *value);
  * @param[in] value The account type
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_account_type(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_account_type(const long long int id, const char *value);
 
 
 /**
@@ -571,7 +571,7 @@ EXPORT_API int bp_tab_adaptor_set_account_type(const int id, const char *value);
  * @param[in] value The device name
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_device_name(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_device_name(const long long int id, const char *value);
 
 
 /**
@@ -580,7 +580,7 @@ EXPORT_API int bp_tab_adaptor_set_device_name(const int id, const char *value);
  * @param[in] value The device id
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_device_id(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_device_id(const long long int id, const char *value);
 
 
 /**
@@ -589,7 +589,7 @@ EXPORT_API int bp_tab_adaptor_set_device_id(const int id, const char *value);
  * @param[in] value The device id
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_usage(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_usage(const long long int id, const char *value);
 
 
 /**
@@ -598,7 +598,7 @@ EXPORT_API int bp_tab_adaptor_set_usage(const int id, const char *value);
  * @param[in] value The device id
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_sync(const int id, const char *value);
+EXPORT_API int bp_tab_adaptor_set_sync(const long long int id, const char *value);
 
 
 /**
@@ -611,7 +611,7 @@ EXPORT_API int bp_tab_adaptor_set_sync(const int id, const char *value);
  * @param[in] length The size of the raw data
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_icon(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_tab_adaptor_set_icon(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -621,7 +621,7 @@ EXPORT_API int bp_tab_adaptor_set_icon(const int id, const int width, const int 
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  * @see bp_tab_adaptor_set_icon()
  */
-EXPORT_API int bp_tab_adaptor_set_icon_png(const int id, const unsigned char *value);
+EXPORT_API int bp_tab_adaptor_set_icon_png(const long long int id, const unsigned char *value);
 
 
 /**
@@ -634,7 +634,7 @@ EXPORT_API int bp_tab_adaptor_set_icon_png(const int id, const unsigned char *va
  * @param[in] length The size of the raw data
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  */
-EXPORT_API int bp_tab_adaptor_set_snapshot(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_tab_adaptor_set_snapshot(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -645,7 +645,7 @@ EXPORT_API int bp_tab_adaptor_set_snapshot(const int id, const int width, const 
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  * @see bp_tab_adaptor_delete()
  */
-EXPORT_API int bp_tab_adaptor_create(int *id);
+EXPORT_API int bp_tab_adaptor_create(long long int *id);
 
 
 /**
@@ -654,7 +654,7 @@ EXPORT_API int bp_tab_adaptor_create(int *id);
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  * @see bp_tab_adaptor_create()
  */
-EXPORT_API int bp_tab_adaptor_delete(const int id);
+EXPORT_API int bp_tab_adaptor_delete(const long long int id);
 
 
 /**
@@ -675,7 +675,7 @@ EXPORT_API int bp_tab_adaptor_get_errorcode(void);
  * @see bp_tab_info_fmt
  * @see bp_tab_adaptor_create()
  */
-EXPORT_API int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info);
+EXPORT_API int bp_tab_adaptor_easy_create(long long int *id, bp_tab_info_fmt *info);
 
 
 /**
@@ -687,7 +687,7 @@ EXPORT_API int bp_tab_adaptor_easy_create(int *id, bp_tab_info_fmt *info);
  * @see bp_tab_info_fmt
  * @see bp_tab_adaptor_get_info()
  */
-EXPORT_API int bp_tab_adaptor_get_easy_all(const int id, bp_tab_info_fmt *info);
+EXPORT_API int bp_tab_adaptor_get_easy_all(const long long int id, bp_tab_info_fmt *info);
 
 
 /**
@@ -702,7 +702,7 @@ EXPORT_API int bp_tab_adaptor_get_easy_all(const int id, bp_tab_info_fmt *info);
  * @see bp_tab_offset
  * @see bp_tab_info_fmt
  */
-EXPORT_API int bp_tab_adaptor_get_info(const int id, const bp_tab_offset offset, bp_tab_info_fmt *info);
+EXPORT_API int bp_tab_adaptor_get_info(const long long int id, const bp_tab_offset offset, bp_tab_info_fmt *info);
 
 
 /**
@@ -722,7 +722,7 @@ EXPORT_API int bp_tab_adaptor_easy_free(bp_tab_info_fmt *info);
  * @return 0 on success, otherwise -1 is returned and error code is set to indicate the error.
  * @see bp_tab_adaptor_set_activated()
  */
-EXPORT_API int bp_tab_adaptor_activate(const int id);
+EXPORT_API int bp_tab_adaptor_activate(const long long int id);
 
 
 /**

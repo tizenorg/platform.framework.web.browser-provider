@@ -187,8 +187,8 @@ typedef enum {
 
 typedef struct {
 	bp_command_defs cmd;
-	int cid; // client id. publish by provider in connect time
-	int id; // bp_command_defs
+	long long int cid; // client id. publish by provider in connect time
+	long long int id; // bp_command_defs
 } bp_command_fmt;
 // Usage IPC : send(bp_command_defs);send(data);
 

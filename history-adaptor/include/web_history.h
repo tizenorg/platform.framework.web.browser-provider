@@ -266,7 +266,7 @@ EXPORT_API int bp_history_adaptor_deinitialize(void);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_url(const int id, char **value);
+EXPORT_API int bp_history_adaptor_get_url(const long long int id, char **value);
 
 
 /**
@@ -279,7 +279,7 @@ EXPORT_API int bp_history_adaptor_get_url(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_title(const int id, char **value);
+EXPORT_API int bp_history_adaptor_get_title(const long long int id, char **value);
 
 
 /**
@@ -292,7 +292,7 @@ EXPORT_API int bp_history_adaptor_get_title(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_frequency(const int id, int *value);
+EXPORT_API int bp_history_adaptor_get_frequency(const long long int id, int *value);
 
 
 /**
@@ -305,7 +305,7 @@ EXPORT_API int bp_history_adaptor_get_frequency(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_date_created(const int id, int *value);
+EXPORT_API int bp_history_adaptor_get_date_created(const long long int id, int *value);
 
 
 /**
@@ -318,7 +318,7 @@ EXPORT_API int bp_history_adaptor_get_date_created(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_date_modified(const int id, int *value);
+EXPORT_API int bp_history_adaptor_get_date_modified(const long long int id, int *value);
 
 
 /**
@@ -331,7 +331,7 @@ EXPORT_API int bp_history_adaptor_get_date_modified(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_date_visited(const int id, int *value);
+EXPORT_API int bp_history_adaptor_get_date_visited(const long long int id, int *value);
 
 
 /**
@@ -352,7 +352,7 @@ EXPORT_API int bp_history_adaptor_get_date_visited(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_icon(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_history_adaptor_get_icon(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -373,7 +373,7 @@ EXPORT_API int bp_history_adaptor_get_icon(const int id, int *width, int *height
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_snapshot(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_history_adaptor_get_snapshot(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -394,7 +394,7 @@ EXPORT_API int bp_history_adaptor_get_snapshot(const int id, int *width, int *he
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_get_webicon(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_history_adaptor_get_webicon(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -407,7 +407,7 @@ EXPORT_API int bp_history_adaptor_get_webicon(const int id, int *width, int *hei
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_url(const int id, const char *value);
+EXPORT_API int bp_history_adaptor_set_url(const long long int id, const char *value);
 
 
 /**
@@ -420,7 +420,7 @@ EXPORT_API int bp_history_adaptor_set_url(const int id, const char *value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_title(const int id, const char *value);
+EXPORT_API int bp_history_adaptor_set_title(const long long int id, const char *value);
 
 
 /**
@@ -433,7 +433,7 @@ EXPORT_API int bp_history_adaptor_set_title(const int id, const char *value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_frequency(const int id, const int value);
+EXPORT_API int bp_history_adaptor_set_frequency(const long long int id, const int value);
 
 
 /**
@@ -446,7 +446,7 @@ EXPORT_API int bp_history_adaptor_set_frequency(const int id, const int value);
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_date_created(const int id, const int value);
+EXPORT_API int bp_history_adaptor_set_date_created(const long long int id, const int value);
 
 
 /**
@@ -459,7 +459,7 @@ EXPORT_API int bp_history_adaptor_set_date_created(const int id, const int value
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_date_modified(const int id, const int value);
+EXPORT_API int bp_history_adaptor_set_date_modified(const long long int id, const int value);
 
 
 /**
@@ -472,7 +472,7 @@ EXPORT_API int bp_history_adaptor_set_date_modified(const int id, const int valu
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_date_visited(const int id, const int value);
+EXPORT_API int bp_history_adaptor_set_date_visited(const long long int id, const int value);
 
 
 /**
@@ -489,7 +489,7 @@ EXPORT_API int bp_history_adaptor_set_date_visited(const int id, const int value
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_icon(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_history_adaptor_set_icon(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -506,7 +506,7 @@ EXPORT_API int bp_history_adaptor_set_icon(const int id, const int width, const 
  * @return @c 0 on success, 
  *         otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_snapshot(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_history_adaptor_set_snapshot(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -523,7 +523,7 @@ EXPORT_API int bp_history_adaptor_set_snapshot(const int id, const int width, co
  * @return @c 0 on success, 
  *          otherwise @c -1
  */
-EXPORT_API int bp_history_adaptor_set_webicon(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_history_adaptor_set_webicon(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 
@@ -551,7 +551,7 @@ EXPORT_API int bp_history_adaptor_create(int *id);
  *         otherwise @c -1
  * @see bp_history_adaptor_create()
  */
-EXPORT_API int bp_history_adaptor_delete(const int id);
+EXPORT_API int bp_history_adaptor_delete(const long long int id);
 
 
 /**
@@ -565,7 +565,7 @@ EXPORT_API int bp_history_adaptor_delete(const int id);
  * @see bp_history_adaptor_set_frequency()
  * @see bp_history_adaptor_set_date_visited()
  */
-EXPORT_API int bp_history_adaptor_visit(const int id);
+EXPORT_API int bp_history_adaptor_visit(const long long int id);
 
 
 /**
@@ -622,7 +622,7 @@ EXPORT_API int bp_history_adaptor_easy_create(int *id, bp_history_info_fmt *info
  * @see #bp_history_offset
  * @see #bp_history_info_fmt
  */
-EXPORT_API int bp_history_adaptor_get_info(const int id, const bp_history_offset offset, bp_history_info_fmt *info);
+EXPORT_API int bp_history_adaptor_get_info(const long long int id, const bp_history_offset offset, bp_history_info_fmt *info);
 
 
 /**

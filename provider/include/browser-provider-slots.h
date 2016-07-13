@@ -30,7 +30,7 @@ typedef struct {
 
 typedef struct {
 	// unique id
-	int cid;
+	long long int cid;
 	// send command * get return value.
 	int cmd_socket;
 	// send noti to client
@@ -53,7 +53,7 @@ typedef struct {
 } bp_client_slots_defs;
 
 // functions
-int bp_create_unique_id(void);
+long long int bp_create_unique_id(void);
 bp_client_slots_defs *bp_client_slots_new(int size);
 int bp_client_free(bp_client_defs *client);
 void bp_client_slots_free(bp_client_slots_defs *slots, int size);

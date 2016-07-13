@@ -394,7 +394,7 @@ EXPORT_API int bp_bookmark_adaptor_get_root(int *id);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_dirty(const int id);
+EXPORT_API int bp_bookmark_adaptor_set_dirty(const long long int id);
 
 
 /**
@@ -420,7 +420,7 @@ EXPORT_API int bp_bookmark_adaptor_publish_notification(void);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_type(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_type(const long long int id, int *value);
 
 
 /**
@@ -433,7 +433,7 @@ EXPORT_API int bp_bookmark_adaptor_get_type(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_parent_id(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_parent_id(const long long int id, int *value);
 
 
 /**
@@ -446,7 +446,7 @@ EXPORT_API int bp_bookmark_adaptor_get_parent_id(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_url(const int id, char **value);
+EXPORT_API int bp_bookmark_adaptor_get_url(const long long int id, char **value);
 
 
 /**
@@ -459,7 +459,7 @@ EXPORT_API int bp_bookmark_adaptor_get_url(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_title(const int id, char **value);
+EXPORT_API int bp_bookmark_adaptor_get_title(const long long int id, char **value);
 
 
 /**
@@ -472,7 +472,7 @@ EXPORT_API int bp_bookmark_adaptor_get_title(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_sequence(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_sequence(const long long int id, int *value);
 
 
 /**
@@ -486,7 +486,7 @@ EXPORT_API int bp_bookmark_adaptor_get_sequence(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_is_editable(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_is_editable(const long long int id, int *value);
 
 
 /**
@@ -500,7 +500,7 @@ EXPORT_API int bp_bookmark_adaptor_get_is_editable(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_is_operator(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_is_operator(const long long int id, int *value);
 
 
 /**
@@ -513,7 +513,7 @@ EXPORT_API int bp_bookmark_adaptor_get_is_operator(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_access_count(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_access_count(const long long int id, int *value);
 
 
 /**
@@ -526,7 +526,7 @@ EXPORT_API int bp_bookmark_adaptor_get_access_count(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_date_created(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_date_created(const long long int id, int *value);
 
 
 /**
@@ -539,7 +539,7 @@ EXPORT_API int bp_bookmark_adaptor_get_date_created(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_date_modified(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_date_modified(const long long int id, int *value);
 
 
 /**
@@ -552,7 +552,7 @@ EXPORT_API int bp_bookmark_adaptor_get_date_modified(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_date_visited(const int id, int *value);
+EXPORT_API int bp_bookmark_adaptor_get_date_visited(const long long int id, int *value);
 
 
 /**
@@ -566,7 +566,7 @@ EXPORT_API int bp_bookmark_adaptor_get_date_visited(const int id, int *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_account_name(const int id, char **value);
+EXPORT_API int bp_bookmark_adaptor_get_account_name(const long long int id, char **value);
 
 
 /**
@@ -580,7 +580,7 @@ EXPORT_API int bp_bookmark_adaptor_get_account_name(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_account_type(const int id, char **value);
+EXPORT_API int bp_bookmark_adaptor_get_account_type(const long long int id, char **value);
 
 
 /**
@@ -594,7 +594,7 @@ EXPORT_API int bp_bookmark_adaptor_get_account_type(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_device_name(const int id, char **value);
+EXPORT_API int bp_bookmark_adaptor_get_device_name(const long long int id, char **value);
 
 
 /**
@@ -608,7 +608,7 @@ EXPORT_API int bp_bookmark_adaptor_get_device_name(const int id, char **value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_device_id(const int id, char **value);
+EXPORT_API int bp_bookmark_adaptor_get_device_id(const long long int id, char **value);
 
 
 /**
@@ -630,7 +630,7 @@ EXPORT_API int bp_bookmark_adaptor_get_device_id(const int id, char **value);
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  * @see bp_bookmark_adaptor_get_icon_png()
  */
-EXPORT_API int bp_bookmark_adaptor_get_icon(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_bookmark_adaptor_get_icon(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -651,7 +651,7 @@ EXPORT_API int bp_bookmark_adaptor_get_icon(const int id, int *width, int *heigh
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_snapshot(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_bookmark_adaptor_get_snapshot(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -672,7 +672,7 @@ EXPORT_API int bp_bookmark_adaptor_get_snapshot(const int id, int *width, int *h
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_get_webicon(const int id, int *width, int *height, unsigned char **value, int *length);
+EXPORT_API int bp_bookmark_adaptor_get_webicon(const long long int id, int *width, int *height, unsigned char **value, int *length);
 
 
 /**
@@ -689,7 +689,7 @@ EXPORT_API int bp_bookmark_adaptor_get_webicon(const int id, int *width, int *he
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  * @see bp_bookmark_adaptor_get_icon_png()
  */
-EXPORT_API int bp_bookmark_adaptor_get_icon_png(const int id, unsigned char **value, int *length);
+EXPORT_API int bp_bookmark_adaptor_get_icon_png(const long long int id, unsigned char **value, int *length);
 
 
 /**
@@ -703,7 +703,7 @@ EXPORT_API int bp_bookmark_adaptor_get_icon_png(const int id, unsigned char **va
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_type(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_type(const long long int id, const int value);
 
 
 /**
@@ -716,7 +716,7 @@ EXPORT_API int bp_bookmark_adaptor_set_type(const int id, const int value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_parent_id(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_parent_id(const long long int id, const int value);
 
 
 /**
@@ -729,7 +729,7 @@ EXPORT_API int bp_bookmark_adaptor_set_parent_id(const int id, const int value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_url(const int id, const char *value);
+EXPORT_API int bp_bookmark_adaptor_set_url(const long long int id, const char *value);
 
 
 /**
@@ -742,7 +742,7 @@ EXPORT_API int bp_bookmark_adaptor_set_url(const int id, const char *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_title(const int id, const char *value);
+EXPORT_API int bp_bookmark_adaptor_set_title(const long long int id, const char *value);
 
 
 /**
@@ -756,7 +756,7 @@ EXPORT_API int bp_bookmark_adaptor_set_title(const int id, const char *value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_sequence(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_sequence(const long long int id, const int value);
 
 
 /**
@@ -769,7 +769,7 @@ EXPORT_API int bp_bookmark_adaptor_set_sequence(const int id, const int value);
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_access_count(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_access_count(const long long int id, const int value);
 
 
 /**
@@ -783,7 +783,7 @@ EXPORT_API int bp_bookmark_adaptor_set_access_count(const int id, const int valu
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_date_created(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_date_created(const long long int id, const int value);
 
 
 /**
@@ -797,7 +797,7 @@ EXPORT_API int bp_bookmark_adaptor_set_date_created(const int id, const int valu
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_date_modified(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_date_modified(const long long int id, const int value);
 
 
 /**
@@ -811,7 +811,7 @@ EXPORT_API int bp_bookmark_adaptor_set_date_modified(const int id, const int val
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_date_visited(const int id, const int value);
+EXPORT_API int bp_bookmark_adaptor_set_date_visited(const long long int id, const int value);
 
 
 /**
@@ -824,7 +824,7 @@ EXPORT_API int bp_bookmark_adaptor_set_date_visited(const int id, const int valu
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_account_name(const int id, const char *value);
+EXPORT_API int bp_bookmark_adaptor_set_account_name(const long long int id, const char *value);
 
 
 /**
@@ -837,7 +837,7 @@ EXPORT_API int bp_bookmark_adaptor_set_account_name(const int id, const char *va
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_account_type(const int id, const char *value);
+EXPORT_API int bp_bookmark_adaptor_set_account_type(const long long int id, const char *value);
 
 
 /**
@@ -850,7 +850,7 @@ EXPORT_API int bp_bookmark_adaptor_set_account_type(const int id, const char *va
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_device_name(const int id, const char *value);
+EXPORT_API int bp_bookmark_adaptor_set_device_name(const long long int id, const char *value);
 
 
 /**
@@ -863,7 +863,7 @@ EXPORT_API int bp_bookmark_adaptor_set_device_name(const int id, const char *val
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_device_id(const int id, const char *value);
+EXPORT_API int bp_bookmark_adaptor_set_device_id(const long long int id, const char *value);
 
 /**
  * @brief Sets the favicon of the item with the given ID.
@@ -880,7 +880,7 @@ EXPORT_API int bp_bookmark_adaptor_set_device_id(const int id, const char *value
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  * @see bp_bookmark_adaptor_set_icon_png()
  */
-EXPORT_API int bp_bookmark_adaptor_set_icon(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_bookmark_adaptor_set_icon(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -897,7 +897,7 @@ EXPORT_API int bp_bookmark_adaptor_set_icon(const int id, const int width, const
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_snapshot(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_bookmark_adaptor_set_snapshot(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -914,7 +914,7 @@ EXPORT_API int bp_bookmark_adaptor_set_snapshot(const int id, const int width, c
  * @return @c 0 on success, 
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  */
-EXPORT_API int bp_bookmark_adaptor_set_webicon(const int id, const int width, const int height, const unsigned char *value, const int length);
+EXPORT_API int bp_bookmark_adaptor_set_webicon(const long long int id, const int width, const int height, const unsigned char *value, const int length);
 
 
 /**
@@ -928,7 +928,7 @@ EXPORT_API int bp_bookmark_adaptor_set_webicon(const int id, const int width, co
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  * @see bp_bookmark_adaptor_set_icon()
  */
-EXPORT_API int bp_bookmark_adaptor_set_icon_png(const int id, const unsigned char *value);
+EXPORT_API int bp_bookmark_adaptor_set_icon_png(const long long int id, const unsigned char *value);
 
 
 /**
@@ -960,7 +960,7 @@ EXPORT_API int bp_bookmark_adaptor_create(int *id);
  *         otherwise @c -1 is returned and the error code is set to indicate the error
  * @see bp_bookmark_adaptor_clear_deleted_ids()
  */
-EXPORT_API int bp_bookmark_adaptor_delete(const int id);
+EXPORT_API int bp_bookmark_adaptor_delete(const long long int id);
 
 
 /**
@@ -1019,7 +1019,7 @@ EXPORT_API int bp_bookmark_adaptor_get_easy_all(int id, bp_bookmark_info_fmt *in
  * @see #bp_bookmark_info_fmt
  * @see bp_bookmark_adaptor_get_easy_all()
  */
-EXPORT_API int bp_bookmark_adaptor_get_info(const int id, const bp_bookmark_offset offset, bp_bookmark_info_fmt *info);
+EXPORT_API int bp_bookmark_adaptor_get_info(const long long int id, const bp_bookmark_offset offset, bp_bookmark_info_fmt *info);
 
 
 /**

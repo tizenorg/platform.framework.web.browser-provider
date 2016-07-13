@@ -32,7 +32,7 @@ extern bp_error_defs errorcode;
 int __browser_adaptor_connect(int callback);
 int __browser_adaptor_disconnect(void);
 
-static int __bp_bookmark_adaptor_get_blob(const int id,
+static int __bp_bookmark_adaptor_get_blob(const long long int id,
 	bp_command_defs cmd, unsigned char **value, int *length)
 {
 	if (id < 0 || value == NULL || length == NULL)
@@ -50,7 +50,7 @@ static int __bp_bookmark_adaptor_get_blob(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_set_blob(const int id,
+static int __bp_bookmark_adaptor_set_blob(const long long int id,
 	bp_command_defs cmd, const unsigned char *value, const int length)
 {
 	if (id < 0)
@@ -68,7 +68,7 @@ static int __bp_bookmark_adaptor_set_blob(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_get_blob_shm(const int id,
+static int __bp_bookmark_adaptor_get_blob_shm(const long long int id,
 	bp_command_defs cmd, int *width, int *height, unsigned char **value,
 	int *length)
 {
@@ -88,7 +88,7 @@ static int __bp_bookmark_adaptor_get_blob_shm(const int id,
 	return ret;
 }
 
-static int __bp_bookmark_adaptor_set_blob_shm(const int id,
+static int __bp_bookmark_adaptor_set_blob_shm(const long long int id,
 	bp_command_defs cmd, const int width, const int height,
 	const unsigned char *value, const int length)
 {
@@ -113,28 +113,28 @@ static int __bp_bookmark_adaptor_set_blob_shm(const int id,
 // 0 : Success
 // -1 : Failed
 
-int bp_bookmark_adaptor_get_icon(const int id, int *width,
+int bp_bookmark_adaptor_get_icon(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_bookmark_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_ICON, width, height, value, length);
 }
 
-int bp_bookmark_adaptor_get_snapshot(const int id, int *width,
+int bp_bookmark_adaptor_get_snapshot(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_bookmark_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_SNAPSHOT, width, height, value, length);
 }
 
-int bp_bookmark_adaptor_get_webicon(const int id, int *width,
+int bp_bookmark_adaptor_get_webicon(const long long int id, int *width,
 	int *height, unsigned char **value, int *length)
 {
 	return __bp_bookmark_adaptor_get_blob_shm
 		(id, BP_CMD_COMMON_GET_WEBICON, width, height, value, length);
 }
 
-int bp_bookmark_adaptor_get_icon_png(const int id,
+int bp_bookmark_adaptor_get_icon_png(const long long int id,
 	unsigned char **value, int *length)
 {
 	unsigned char *raw_data = NULL;
@@ -150,28 +150,28 @@ int bp_bookmark_adaptor_get_icon_png(const int id,
 	return ret;
 }
 
-int bp_bookmark_adaptor_set_icon(const int id, const int width,
+int bp_bookmark_adaptor_set_icon(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_bookmark_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_ICON, width, height, value, length);
 }
 
-int bp_bookmark_adaptor_set_snapshot(const int id, const int width,
+int bp_bookmark_adaptor_set_snapshot(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_bookmark_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_SNAPSHOT, width, height, value, length);
 }
 
-int bp_bookmark_adaptor_set_webicon(const int id, const int width,
+int bp_bookmark_adaptor_set_webicon(const long long int id, const int width,
 	const int height, const unsigned char *value, const int length)
 {
 	return __bp_bookmark_adaptor_set_blob_shm
 		(id, BP_CMD_COMMON_SET_WEBICON, width, height, value, length);
 }
 
-int bp_bookmark_adaptor_set_icon_png(const int id,
+int bp_bookmark_adaptor_set_icon_png(const long long int id,
 	const unsigned char *value)
 {
 	if (value == NULL)

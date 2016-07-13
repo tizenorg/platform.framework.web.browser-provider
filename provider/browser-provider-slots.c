@@ -29,34 +29,16 @@
 #include "browser-provider-shm.h"
 #include "browser-provider-notify.h"
 
-int bp_create_unique_id(void)
+
+long long int bp_create_unique_id(void)
 {
-	static int last_uniquetime = 0;
-	int uniquetime = 0;
-
-	do {
-		struct timeval tval;
-		int cipher = 1;
-		int c = 0;
-
-		gettimeofday(&tval, NULL);
-
-		int usec = tval.tv_usec;
-		for (c = 0; ; c++, cipher++) {
-			if ((usec /= 10) <= 0)
-				break;
-		}
-		if (tval.tv_usec == 0)
-			tval.tv_usec = (tval.tv_sec & 0x0fff);
-		int disit_unit = 10;
-		for (c = 0; c < cipher - 3; c++)
-			disit_unit = disit_unit * 10;
-		uniquetime = tval.tv_sec + ((tval.tv_usec << 2) * 100) +
-				(((tval.tv_usec >> (cipher - 1)) * disit_unit) & 0x0fff) +
-				((tval.tv_usec + (tval.tv_usec % 10)) & 0x0fff);
-	} while (last_uniquetime == uniquetime);
-	last_uniquetime = uniquetime;
-	return uniquetime;
+	struct timeval tval;
+	gettimeofday(&tval, NULL);
+	TRACE_INFO("usec:%d", tval.tv_usec);
+	TRACE_INFO("sec:%d", tval.tv_sec);
+	long long int res = (long long int)tval.tv_sec * 1000000 + tval.tv_usec;
+	TRACE_INFO("res:%lld", res);
+	return res;
 }
 
 bp_client_slots_defs *bp_client_slots_new(int size)

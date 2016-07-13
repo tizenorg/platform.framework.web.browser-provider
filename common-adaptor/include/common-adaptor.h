@@ -30,7 +30,7 @@ extern "C"
 
 // define type
 typedef struct {
-	int cid; // publish by provider
+	long long int cid; // publish by provider
 	int cmd_socket; // set/get
 	int notify; // used for callback
 	bp_shm_defs shm;
@@ -42,7 +42,7 @@ int bp_common_adaptor_event_manager(bp_adaptor_defs *adaptorinfo,
 
 int bp_common_precheck_string(const char *str);
 void bp_common_print_errorcode(const char *funcname, const int line,
-	const int id, const bp_error_defs errorcode);
+	const long long int id, const bp_error_defs errorcode);
 int bp_common_adaptor_connect_to_provider(bp_adaptor_defs **adaptorinfo,
 	bp_client_type_defs client_type);
 void bp_common_adaptor_close_all(bp_adaptor_defs *adaptorinfo);
@@ -50,6 +50,7 @@ void bp_common_adaptor_close_all(bp_adaptor_defs *adaptorinfo);
 // default APIs
 int bp_adaptor_ipc_send_int(int fd, int value);
 int bp_adaptor_ipc_read_int(int fd);
+long long int bp_adaptor_ipc_read_int64(int fd);
 
 int bp_common_adaptor_get_ids_p(const int sock, bp_command_fmt *cmd,
 	int **ids, bp_error_defs *errorcode);
